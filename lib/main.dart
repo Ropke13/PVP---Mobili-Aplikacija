@@ -1,4 +1,6 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:projecttest/list.dart';
+
 
 void main() => runApp(
   MaterialApp(
@@ -7,6 +9,16 @@ void main() => runApp(
 );
 
 class MainMenu extends StatelessWidget {
+
+  // Icons
+  static const _kFontFam = 'MyFlutterApp';
+  static const String? _kFontPkg = null;
+
+  static const IconData award = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cog = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData pencilSquared = IconData(0xf14b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+
+  // Menu
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,126 +28,233 @@ class MainMenu extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Icon(Icons.menu, color: Colors.white,size: 52.0,),
-                  Image.asset("profile.png",width: 52.0,)
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SubjectList()
+                        )
+                      );
+                    },
+                    child: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 60.0)
+                  )
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
+            const Center(
               child: Text(
-                "Sveikas atvykęs į PAVADINIMAS\n",
+                "Sveikas atvykęs į PAVADINIMAS",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 28.0,
                   fontWeight: FontWeight.bold
                 ),
-                textAlign: TextAlign.start,
+              ),
+            ),
+            const Center(
+              child: Text(
+                "Kur keliausi toliau?",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  height: 3
+                ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Center(
+              padding: const EdgeInsets.all(20.0),
+              child:Center(
                 child: Wrap(
-                  spacing:20,
+                  spacing: 20,
                   runSpacing: 20.0,
                   children: <Widget>[
-                    SizedBox(
-                      width: 140.0,
-                      height: 140.0,
-                      child: Card(
-                        color: Color.fromARGB(255,21, 21, 21),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)
-                        ),
-                        child:Center(
-                            child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset("mokytis.png",width: 64.0,),
-                              Text(
-                                "Mokytis",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
-                                  height: 2.0
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: InkWell( 
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SubjectList()
+                            )
+                          );
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 130.0,
+                              height: 130.0,
+                              child: Card(
+                                color: const Color.fromARGB(255,21, 21, 21),
+                                elevation: 2.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)
                                 ),
-                              )
-                            ],
-                            ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width:140.0,
-                      height: 140.0,
-                      child: Card(
-
-                        color: Color.fromARGB(255,21, 21, 21),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)
-                        ),
-                        child:Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Image.asset("testai.png",width: 64.0,),
-                                  Text(
-                                    "Testai",
-                                    style: TextStyle(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(Icons.calculate_rounded, color: Colors.green, size: 72.5),
+                                    Text(
+                                      "Mokytis",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18.0,
-                                        height: 2.0
-                                    ),
-                                  )
-                                ],
-                              ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width:140.0,
-                      height: 140.0,
-                      child: Card(
-                        color: Color.fromARGB(255,21, 21, 21),
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)
-                        ),
-                        child:Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Image.asset("pasiekimai.jpg",width: 64.0,),
-                                  Text(
-                                    "Pasiekimai",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18.0,
-                                        height: 2.0
-                                    ),
-                                  )
-                                ],
+                                        height: 1.2,
+                                      )
+                                    )
+                                  ] 
+                                ),
                               ),
                             )
-                        ),
-                      ),
-                  ],
-                ),
-              ),
+                          ] 
+                        )
+                      )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: InkWell( 
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SubjectList()
+                            )
+                          );
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 130.0,
+                              height: 130.0,
+                              child: Card(
+                                color: const Color.fromARGB(255,21, 21, 21),
+                                elevation: 2.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(pencilSquared, color: Colors.blue, size: 66),
+                                    Text(
+                                      "Testai",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
+                                        height: 1.45,
+                                      )
+                                    )
+                                  ] 
+                                ),
+                              ),
+                            )
+                          ] 
+                        )
+                      )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: InkWell( 
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SubjectList()
+                            )
+                          );
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 130.0,
+                              height: 130.0,
+                              child: Card(
+                                color: const Color.fromARGB(255,21, 21, 21),
+                                elevation: 2.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(award, color: Colors.yellow, size: 63.5),
+                                    Text(
+                                      "Pasiekimai",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
+                                        height: 1.6,
+                                      )
+                                    )
+                                  ] 
+                                ),
+                              ),
+                            )
+                          ] 
+                        )
+                      )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: InkWell( 
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SubjectList()
+                            )
+                          );
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 130.0,
+                              height: 130.0,
+                              child: Card(
+                                color: const Color.fromARGB(255,21, 21, 21),
+                                elevation: 2.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(cog, color: Colors.red, size: 63.5),
+                                    Text(
+                                      "Nustatymai",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.0,
+                                        height: 1.55,
+                                      )
+                                    )
+                                  ] 
+                                ),
+                              ),
+                            )
+                          ] 
+                        )
+                      )
+                    )
+                  ]
+                )
+              )
             )
-          ],
+          ]
         )
       )
     );
   }
 }
+
+                    
