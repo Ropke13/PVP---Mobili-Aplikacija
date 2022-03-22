@@ -1,8 +1,9 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:matematika/test_question.dart';
 
- var list = ['Procentai', 'Laipsniai ir šaknys', 'Lygtys ir lygčių sistemos'];
+var list = ['Procentai', 'Laipsniai ir šaknys', 'Lygtys ir lygčių sistemos'];
 
- class SubjectList extends StatelessWidget {
+class SubjectList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +17,9 @@
                     children: <Widget>[
                       ListTile(
                         title: Text(list[index]),
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => TestQuestion()));
+                        },
                       ),
                       Divider(),
                     ],
