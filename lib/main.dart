@@ -12,6 +12,8 @@ class MainMenu extends StatelessWidget {
   static const IconData cog = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData pencilSquared = IconData(0xf14b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
+  const MainMenu({Key? key}) : super(key: key);
+
   // Menu
   @override
   Widget build(BuildContext context) {

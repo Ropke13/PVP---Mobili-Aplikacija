@@ -7,6 +7,8 @@ var answers = ["10", "5000", "25000", "100000"];
 var correctAnswer = 2;
 
 class TestQuestion extends StatelessWidget {
+  const TestQuestion({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

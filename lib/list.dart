@@ -5,6 +5,8 @@ import 'package:matematika/text_question.dart';
 var list = ['Procentai', 'Laipsniai ir šaknys', 'Lygtys ir lygčių sistemos'];
 
 class SubjectList extends StatelessWidget {
+  const SubjectList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
