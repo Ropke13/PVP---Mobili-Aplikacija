@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matematika/list.dart';
 
-void main() => runApp(MaterialApp(home: MainMenu()));
+void main() => runApp(const MaterialApp(home: MainMenu()));
 
 class MainMenu extends StatelessWidget {
   // Icons
@@ -28,7 +28,7 @@ class MainMenu extends StatelessWidget {
               children: <Widget>[
                 InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
                     },
                     child: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 60.0))
               ],
@@ -56,7 +56,7 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -84,7 +84,7 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -112,7 +112,7 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -140,7 +140,7 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(

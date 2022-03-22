@@ -22,13 +22,13 @@ class SubjectList extends StatelessWidget {
                         title: Text(list[index]),
                         onTap: () {
                           if (index == 0) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => TestQuestion()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const TestQuestion()));
                           } else {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => TextQuestion()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const TextQuestion()));
                           }
                         },
                       ),
-                      Divider(),
+                      const Divider(),
                     ],
                   );
                 }),

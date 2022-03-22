@@ -30,13 +30,13 @@ class TestQuestion extends StatelessWidget {
                               title: Text(answers[index]),
                               onTap: () {
                                 if (index == correctAnswer) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Correct()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Correct()));
                                 } else {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Wrong()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Wrong()));
                                 }
                               },
                             ),
-                            Divider(),
+                            const Divider(),
                           ],
                         );
                       }))
