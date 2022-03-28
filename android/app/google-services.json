@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "56331451248",
+    "project_id": "matematika-21de2",
+    "storage_bucket": "matematika-21de2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56331451248:android:604443882144b5964c2db5",
+        "android_client_info": {
+          "package_name": "com.example.matematika"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56331451248-ijjtrieeb52kisjoadn8cj9m94aemsel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDS3bJxbXFG9J_WennimAZN3oYEPfOkp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56331451248-ijjtrieeb52kisjoadn8cj9m94aemsel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
