@@ -35,11 +35,14 @@ class MainMenu extends StatelessWidget {
             ),
           ),
           const Center(
-            child: Text(
-              "Sveikas atvykęs į PAVADINIMAS",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold),
-            ),
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                "Sveikas atvykęs į PAVADINIMAS",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold),
+             ),
+            )
           ),
           const Center(
             child: Text(
