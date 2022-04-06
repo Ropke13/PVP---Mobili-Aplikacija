@@ -64,7 +64,7 @@ class Wrong extends StatelessWidget {
               flex: 1,
               child: InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
                   },
                   child: Column(children: <Widget>[
                     SizedBox(
