@@ -43,7 +43,17 @@ class SubjectList extends StatelessWidget {
                         title: Text(themeList[index], style: const TextStyle(fontSize: 20)),
                         onTap: () {
                           if (index == 0) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => TestQuestion(theme: themeList[index])));
+                            List question = getNumberQuestion();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TestQuestion(
+                                          theme: themeList[index],
+                                          question: question[0],
+                                          answers: question[1],
+                                          correctAnswer: question[2],
+                                          explain: question[3],
+                                        )));
                           } else {
                             List<String> question = generateNewQuestion();
 
