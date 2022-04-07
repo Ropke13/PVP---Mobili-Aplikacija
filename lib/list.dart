@@ -4,7 +4,7 @@ import 'package:matematika/text_question.dart';
 import 'package:matematika/utilities.dart';
 
 var themeList = ['Skaičiai ir skaičiavimai', 'Laipsniai ir šaknys', 'Lygtys ir lygčių sistemos'];
-var iconList = ['🔢', '^', '='];
+var iconList = ['1', '^', '='];
 
 class SubjectList extends StatelessWidget {
   const SubjectList({Key? key}) : super(key: key);

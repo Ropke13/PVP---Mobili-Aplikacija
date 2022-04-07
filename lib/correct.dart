@@ -28,15 +28,16 @@ class Correct extends StatelessWidget {
             const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
             Expanded(
               flex: 3,
-              child: Align(
-                  alignment: Alignment.center,
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(question, textAlign: TextAlign.justify, style: const TextStyle(color: Colors.white, fontSize: 20.0)),
+                      Text(question, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 20.0)),
                       Text(answer, style: const TextStyle(color: Colors.green, fontSize: 20.0)),
-                    ],
-                  )),
+                  ],
+                )
+              ),
             ),
             Expanded(
                 flex: 1,
@@ -54,11 +55,15 @@ class Correct extends StatelessWidget {
                     ))),
             Expanded(
                 flex: 1,
+                child: Padding(
+                padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                 child: Text(
                   explain,
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(color: Colors.white, fontSize: 18.0, height: 1),
-                )),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colors.white, fontSize: 15.0, height: 1),
+                )
+              )
+            ),
             Expanded(
               flex: 1,
               child: InkWell(

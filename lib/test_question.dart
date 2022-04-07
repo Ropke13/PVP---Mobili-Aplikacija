@@ -31,10 +31,12 @@ class TestQuestion extends StatelessWidget {
             children: <Widget>[
               const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
               Expanded(
-                  child: Align(
-                alignment: Alignment.center,
-                child: Text(question, textAlign: TextAlign.justify, style: const TextStyle(color: Colors.white, fontSize: 20.0)),
-              )),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                child: Text(question, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 20.0)),
+              ))),
               Expanded(
                   child: Align(
                       alignment: Alignment.bottomCenter,
