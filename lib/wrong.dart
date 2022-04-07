@@ -42,17 +42,13 @@ class Wrong extends StatelessWidget {
                   )
                 ),
               ),
-              Expanded(
+              const Expanded(
                 flex: 1,
-                child:Align(
+                child: Align(
                   alignment: Alignment.center,
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      ScaleAnimatedText("Neteisingai!",
-                      textStyle: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 50.0),
-                      ),
-                    ],
-                    repeatForever: true,
+                  child: Text(
+                      "Neteisingai",
+                      style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 50.0),
                   )
                 )
               ),
