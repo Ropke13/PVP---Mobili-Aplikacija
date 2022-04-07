@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:matematika/test_question.dart';
 import 'package:matematika/text_question.dart';
+import 'package:matematika/utilities.dart';
 
-var themeList = ['Procentai', 'Laipsniai ir šaknys', 'Lygtys ir lygčių sistemos'];
-var iconList = ['%', '^', '='];
+var themeList = ['Skaičiai ir skaičiavimai', 'Laipsniai ir šaknys', 'Lygtys ir lygčių sistemos'];
+var iconList = ['🔢', '^', '='];
 
 class SubjectList extends StatelessWidget {
   const SubjectList({Key? key}) : super(key: key);
@@ -21,10 +22,10 @@ class SubjectList extends StatelessWidget {
           title: const Text("Temos", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
           centerTitle: true,
-        ),   
+        ),
         body: Column(children: [
           const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
-          Expanded(      
+          Expanded(
             child: ListView.builder(
                 padding: const EdgeInsets.all(10.0),
                 itemCount: themeList.length,
@@ -42,9 +43,29 @@ class SubjectList extends StatelessWidget {
                         title: Text(themeList[index], style: const TextStyle(fontSize: 20)),
                         onTap: () {
                           if (index == 0) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => TestQuestion(theme: themeList[index])));
+                            List question = getNumberQuestion();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TestQuestion(
+                                          theme: themeList[index],
+                                          question: question[0],
+                                          answers: question[1],
+                                          correctAnswer: question[2],
+                                          explain: question[3],
+                                        )));
                           } else {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => TextQuestion(theme: themeList[index])));
+                            List<String> question = generateNewQuestion();
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TextQuestion(
+                                          theme: themeList[index],
+                                          question: question[0],
+                                          answer: question[1],
+                                          explain: question[2],
+                                        )));
                           }
                         },
                       ),
