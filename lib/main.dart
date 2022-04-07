@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matematika/list.dart';
+import 'package:matematika/Login_Screen.dart';
 
 void main() => runApp(const MaterialApp(home: MainMenu()));
 
@@ -8,9 +9,12 @@ class MainMenu extends StatelessWidget {
   static const _kFontFam = 'MyFlutterApp';
   static const String? _kFontPkg = null;
 
-  static const IconData award = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cog = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pencilSquared = IconData(0xf14b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData award =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cog =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData pencilSquared =
+      IconData(0xf14b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
   const MainMenu({Key? key}) : super(key: key);
 
@@ -20,7 +24,9 @@ class MainMenu extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+                    Widget>[
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
@@ -28,22 +34,28 @@ class MainMenu extends StatelessWidget {
               children: <Widget>[
                 InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
                     },
-                    child: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 60.0))
+                    child: const Icon(Icons.account_circle_rounded,
+                        color: Colors.white, size: 60.0))
               ],
             ),
           ),
           const Center(
-            child: Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Text(
-                "Sveikas atvykęs į PAVADINIMAS",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold),
-             ),
-            )
-          ),
+              child: Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Text(
+              "Sveikas atvykęs į MathPro",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.bold),
+            ),
+          )),
           const Center(
             child: Text(
               "Kur keliausi toliau?",
@@ -59,7 +71,10 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SubjectList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -68,18 +83,22 @@ class MainMenu extends StatelessWidget {
                             child: Card(
                               color: const Color.fromARGB(255, 21, 21, 21),
                               elevation: 2.0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: const <Widget>[
-                                Icon(Icons.calculate_rounded, color: Colors.green, size: 72.5),
-                                Text("Mokytis",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      height: 1.2,
-                                    ))
-                              ]),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(Icons.calculate_rounded,
+                                        color: Colors.green, size: 72.5),
+                                    Text("Mokytis",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                          height: 1.2,
+                                        ))
+                                  ]),
                             ),
                           )
                         ]))),
@@ -87,7 +106,10 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SubjectList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -96,18 +118,22 @@ class MainMenu extends StatelessWidget {
                             child: Card(
                               color: const Color.fromARGB(255, 21, 21, 21),
                               elevation: 2.0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: const <Widget>[
-                                Icon(pencilSquared, color: Colors.blue, size: 66),
-                                Text("Testai",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      height: 1.45,
-                                    ))
-                              ]),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(pencilSquared,
+                                        color: Colors.blue, size: 66),
+                                    Text("Testai",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                          height: 1.45,
+                                        ))
+                                  ]),
                             ),
                           )
                         ]))),
@@ -115,7 +141,10 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SubjectList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -124,18 +153,22 @@ class MainMenu extends StatelessWidget {
                             child: Card(
                               color: const Color.fromARGB(255, 21, 21, 21),
                               elevation: 2.0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: const <Widget>[
-                                Icon(award, color: Colors.yellow, size: 63.5),
-                                Text("Pasiekimai",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      height: 1.6,
-                                    ))
-                              ]),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(award,
+                                        color: Colors.yellow, size: 63.5),
+                                    Text("Pasiekimai",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                          height: 1.6,
+                                        ))
+                                  ]),
                             ),
                           )
                         ]))),
@@ -143,7 +176,10 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SubjectList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -152,18 +188,21 @@ class MainMenu extends StatelessWidget {
                             child: Card(
                               color: const Color.fromARGB(255, 21, 21, 21),
                               elevation: 2.0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: const <Widget>[
-                                Icon(cog, color: Colors.red, size: 63.5),
-                                Text("Nustatymai",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      height: 1.55,
-                                    ))
-                              ]),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(cog, color: Colors.red, size: 63.5),
+                                    Text("Nustatymai",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                          height: 1.55,
+                                        ))
+                                  ]),
                             ),
                           )
                         ])))
