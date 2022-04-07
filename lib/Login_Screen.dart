@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "MyApp Title",
+            "MathPro",
             style: TextStyle(
               color: Colors.black,
               fontSize: 28.0,
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const Text(
-            "Login to Your App",
+            "Sveiki, Prisijunkite!",
             style: TextStyle(
               color: Colors.black,
               fontSize: 44.0,
@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
-              hintText: "User Email",
+              hintText: "E-Paštas",
               prefixIcon: Icon(Icons.mail, color: Colors.black),
             ),
           ),
@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
             controller: _passwordController,
             obscureText: true,
             decoration: const InputDecoration(
-              hintText: "User Password",
+              hintText: "Slaptažodis",
               prefixIcon: Icon(Icons.lock, color: Colors.black),
             ),
           ),

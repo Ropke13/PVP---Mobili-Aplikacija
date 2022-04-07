@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:matematika/list.dart';
 import 'package:matematika/Login_Screen.dart';
 
-void main() => 
-  runApp(const MaterialApp(home: MainMenu()));
+void main() => runApp(const MaterialApp(home: MainMenu()));
 
 class MainMenu extends StatelessWidget {
   // Icons
@@ -49,7 +48,7 @@ class MainMenu extends StatelessWidget {
               child: Padding(
             padding: EdgeInsets.all(20.0),
             child: Text(
-              "Sveikas atvykęs į PAVADINIMAS",
+              "Sveikas atvykęs į MathPro",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.white,
