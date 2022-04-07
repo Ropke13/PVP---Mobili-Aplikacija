@@ -14,7 +14,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    FirebaseApp firebaseApp = await Firebase.initializeApp(
+      // Replace with actual values
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyBYFz8vYl44GlU8z0jAIGOD8RNz_irh7tI",
+        appId: "1:56331451248:web:73ef6aaedb3f529e4c2db5",
+        messagingSenderId: "56331451248",
+        projectId: "matematika-21de2",
+      ),
+    );
     return firebaseApp;
   }
 
