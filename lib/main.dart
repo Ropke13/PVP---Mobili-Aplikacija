@@ -109,7 +109,7 @@ class MainMenu extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SubjectList()));
+                                  builder: (context) => const TestList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(

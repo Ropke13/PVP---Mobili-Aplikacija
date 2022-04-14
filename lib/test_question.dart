@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matematika/correct.dart';
+import 'package:matematika/list.dart';
 import 'package:matematika/wrong.dart';
 
 var colors = [Colors.green, Colors.blue, Colors.yellow, Colors.red];
@@ -20,7 +21,8 @@ class TestQuestion extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const SubjectList())),
           ),
           title: Text(theme, style: const TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
