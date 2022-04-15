@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:matematika/list.dart';
+import 'package:flutter_tex/flutter_tex.dart';
 
 class Wrong extends StatelessWidget {
   final String theme;
@@ -27,41 +27,64 @@ class Wrong extends StatelessWidget {
         body: SafeArea(
           child: Column(children: <Widget>[
             const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
-            Expanded(
-              flex: 3,
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(question, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 20.0)),
-                      Text(wrongAnswer, style: const TextStyle(color: Colors.red, fontSize: 20.0, decoration: TextDecoration.lineThrough)),
-                      Text(answer, style: const TextStyle(color: Colors.green, fontSize: 20.0)),
-                    ],
-                  )
+            TeXView(
+                child: TeXViewColumn(
+                  children: <TeXViewWidget>[
+                    TeXViewContainer(
+                        child: TeXViewColumn(children: <TeXViewWidget>[
+                          TeXViewDocument(question,
+                              style: TeXViewStyle(
+                                contentColor: Colors.white,
+                                fontStyle: TeXViewFontStyle(fontSize: 20),
+                                textAlign: TeXViewTextAlign.center,
+                                padding: const TeXViewPadding.only(
+                                  sizeUnit: TeXViewSizeUnit.pt,
+                                  top: 10,
+                                  bottom: 10,
+                                ),
+                              )),
+                          TeXViewDocument(wrongAnswer,
+                              style: TeXViewStyle(
+                                contentColor: Colors.red,
+                                fontStyle: TeXViewFontStyle(fontSize: 20),
+                                textAlign: TeXViewTextAlign.center,
+                              )),
+                          TeXViewDocument(answer,
+                              style: TeXViewStyle(
+                                contentColor: Colors.green,
+                                fontStyle: TeXViewFontStyle(fontSize: 20),
+                                textAlign: TeXViewTextAlign.center,
+                              )),
+                        ]),
+                        style: const TeXViewStyle(
+                          padding: TeXViewPadding.only(
+                            sizeUnit: TeXViewSizeUnit.pt,
+                            left: 30,
+                            right: 30,
+                          ),
+                        )),
+                    TeXViewDocument("Neteisingai",
+                        style: TeXViewStyle(
+                          contentColor: Colors.red,
+                          fontStyle: TeXViewFontStyle(fontSize: 50, fontWeight: TeXViewFontWeight.bold),
+                          textAlign: TeXViewTextAlign.center,
+                        )),
+                    TeXViewDocument(explain,
+                        style: TeXViewStyle(
+                          contentColor: Colors.white,
+                          fontStyle: TeXViewFontStyle(fontSize: 15),
+                          textAlign: TeXViewTextAlign.center,
+                          padding: const TeXViewPadding.only(
+                            sizeUnit: TeXViewSizeUnit.pt,
+                            left: 30,
+                            right: 30,
+                            top: 10,
+                            bottom: 10,
+                          ),
+                        )),
+                  ],
                 ),
-              ),
-              const Expanded(
-                flex: 1,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                      "Neteisingai",
-                      style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 50.0),
-                  )
-                )
-              ),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Text(
-                    explain,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white, fontSize: 15.0, height: 1),
-                )
-              )
-            ),
+                renderingEngine: const TeXViewRenderingEngine.katex()),
             Expanded(
               flex: 1,
               child: InkWell(
