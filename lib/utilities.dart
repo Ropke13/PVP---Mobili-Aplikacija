@@ -22,7 +22,7 @@ List getNumberQuestion() {
   switch (index) {
     case 0:
       return [
-        "Duotos trys aibės: \\(A=\\{2,3,5,9\\}, B = \\{5,6,9\\}, C=\\{3,5,6,7,8\\}\\)  Kuris iš toliau pateiktų teiginių yra klaidingas?",
+        "Duotos trys aibės: \\(A=\\{2,3,5,9\\}, B = \\{5,6,9\\}, C=\\{3,5,6,7,8\\}\\). Kuris iš toliau pateiktų teiginių yra klaidingas?",
         [
           "\\((B \\setminus C) \\subset A\\)",
           "\\(A \\cap  B \\cap  C = \\{5\\}\\)",
