@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tex/flutter_tex.dart';
 import 'package:matematika/correct.dart';
 import 'package:matematika/list.dart';
 import 'package:matematika/wrong.dart';
@@ -34,8 +35,7 @@ class TextQuestionState extends State<TextQuestion> {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const SubjectList())),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const SubjectList())),
           ),
           title: Text(widget.theme, style: const TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
@@ -46,9 +46,18 @@ class TextQuestionState extends State<TextQuestion> {
             children: <Widget>[
               const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
               Expanded(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Padding(padding: const EdgeInsets.fromLTRB(30, 0, 30, 0), child: Text(widget.question, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 20.0))))),
+                  child: Align(
+                alignment: Alignment.center,
+                child: TeXView(
+                  child: TeXViewDocument(widget.question,
+                      style: TeXViewStyle(
+                        contentColor: Colors.white,
+                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                        textAlign: TeXViewTextAlign.center,
+                      )),
+                  renderingEngine: const TeXViewRenderingEngine.katex(),
+                ),
+              )),
               Expanded(
                   child: Align(
                       alignment: Alignment.bottomCenter,
