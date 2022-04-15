@@ -1,4 +1,4 @@
-package com.example.projecttest
+package com.MathPro.MathPro
 
 import io.flutter.embedding.android.FlutterActivity
 
