@@ -12,29 +12,71 @@ List<String> generateNewQuestion() {
 
   String explain = "Sudauginus $digit1 su $digit2 gauname $answer";
 
-  return ["Kiek yra " + digit1.toString() + "*" + digit2.toString() + "?", answer, explain];
+  return ["Kiek yra \\(" + digit1.toString() + "\\cdot" + digit2.toString() + "\\)?", answer, explain];
 }
 
 // returns [question, answers, correctAnswer, explanation]
 List getNumberQuestion() {
-  int index = generateRandom(0, 1);
+  int index = generateRandom(0, 2);
 
   switch (index) {
     case 0:
       return [
-        "Duotos trys aibės:  Kuris iš toliau pateiktų teiginių yra klaidingas?",
+        r"""Duotos trys aibės: \( A=\{ 2,3,5,9\}, B = \{ 5,6,9\}, C=\{ 3,5,6,7,8\}\). Kuris iš toliau pateiktų teiginių yra klaidingas?""",
         [
-          "A",
-          "B",
-          "C",
-          "D",
+          r"""\((B \setminus C) \subset A\)""",
+          r"""\(A \cap  B \cap  C = \{5\}\)""",
+          r"""\(B \subset A \)""",
+          r"""\(B \cup C = \{3, 5, 6, 7, 8, 9\}\)""",
         ],
         2,
-        """C, nes visi pirmoje aibėje esantys elementai turi būti antroje aibėje: . Kadangi šešeto nėra antroje aibėje, tai teiginys yra klaidingas. 
-A, B, D teiginiai nėra klaidingi, nes 
-A:  devyni priklauso aibei ;
-B apjungiame bendrus aibės elementus ir gauname: ;
-D sujungiame visus aibių elementus į vieną aibę: """
+        r"""C, nes visi pirmoje aibėje esantys elementai turi būti antroje aibėje: \(\{5, 6, 9\} \subset \{ 2,3,5,9\}\).
+Kadangi šešeto nėra antroje aibėje, tai teiginys yra klaidingas.
+A, B, D teiginiai nėra klaidingi, nes
+A: \(\{5,6,9\} \setminus \{ 3,5,6,7,8\} = \{9\}\) devyni priklauso aibei \(A=\{2,3,5,9\}\);
+B apjungiame bendrus aibės elementus ir gauname:
+\(A \cap B = \{2,3,5,9\} \cap \{5,6,9\} = \{5,9\}, \{5,9\} \cap C = \{5,9\} \cap \{3,5,6,7,8\} = \{5\}\);
+D sujungiame visus aibių elementus į vieną aibę: \( B \cup C = \{ 5,6,9\} \cup \{3,5,6,7,8\} = \{3, 5, 6, 7, 8, 9\}\)."""
+      ];
+    case 1:
+      return [
+        r"""Ar lygčių sistemos
+\(\begin{cases}
+        y+2x=4 \\
+        x-13=5y
+    \end{cases}\)
+ir
+
+\(\begin{cases}
+        3x+5y=9 \\
+        4x-y=11
+    \end{cases}\)
+yra ekvivalenčios?
+""",
+        ["Taip", "Ne"],
+        1,
+        r"""
+\(\begin{cases}
+        y+2x=4 \\
+        x-13=5y
+    \end{cases}\),
+\(x-13=5(4-2x)\),
+\(x-13=20-10x\),
+\(11x=33\),
+\(x=3\),
+\(y=4-2\cdot3=-2\).
+\(\begin{cases}
+    3x+5y=9 \\
+    4x-y=11 / \cdot 5
+\end{cases}\),
+\(\begin{cases}
+    3x+5y=9 \\
+    20x-5y=55
+\end{cases}\),
+\( 23x=64\),
+\( x=2\frac{18}{23}\),
+\( y=4\cdot\frac{64}{23}-11=\frac{3}{23}\)
+"""
       ];
     default:
       throw ("No question");
