@@ -29,57 +29,67 @@ class TestQuestion extends StatelessWidget {
           centerTitle: true,
         ),
         body: SafeArea(
-          child: TeXView(
-            child: TeXViewColumn(children: <TeXViewWidget>[
-              TeXViewDocument(question,
-                  style: TeXViewStyle(
-                    contentColor: Colors.white,
-                    fontStyle: TeXViewFontStyle(fontSize: 20),
-                    textAlign: TeXViewTextAlign.center,
-                    padding: const TeXViewPadding.only(sizeUnit: TeXViewSizeUnit.pt, bottom: 20),
-                  )),
-              TeXViewGroup(
-                  children: answers.map((String answer) {
-                    return TeXViewGroupItem(
-                        id: answers.indexOf(answer).toString(),
-                        child: TeXViewDocument(String.fromCharCode(answers.indexOf(answer) + 65) + ": " + answer,
-                            style: TeXViewStyle(
-                              contentColor: Colors.white,
-                              fontStyle: TeXViewFontStyle(fontSize: 20),
-                              textAlign: TeXViewTextAlign.left,
-                              padding: const TeXViewPadding.all(10, sizeUnit: TeXViewSizeUnit.pt),
-                              margin: const TeXViewMargin.all(5, sizeUnit: TeXViewSizeUnit.pt),
-                              borderRadius: const TeXViewBorderRadius.all(7, sizeUnit: TeXViewSizeUnit.pt),
-                              backgroundColor: Colors.grey.shade900,
-                            )));
-                  }).toList(),
-                  onTap: (String index) {
-                    if (index == correctAnswer.toString()) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Correct(
-                                    theme: theme,
-                                    question: question,
-                                    answer: answers[int.parse(index)],
-                                    explain: explain,
+          child: Column(
+            children: <Widget>[
+              const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
+              Expanded(
+              child: Align(
+                alignment: Alignment.center,
+                child: TeXView(
+                  child: TeXViewColumn(children: <TeXViewWidget>[
+                    TeXViewDocument(question,
+                        style: TeXViewStyle(
+                          contentColor: Colors.white,
+                          fontStyle: TeXViewFontStyle(fontSize: 20),
+                          textAlign: TeXViewTextAlign.center,
+                          padding: const TeXViewPadding.only(sizeUnit: TeXViewSizeUnit.pt, bottom: 20),
+                        )),
+                    TeXViewGroup(
+                        children: answers.map((String answer) {
+                          return TeXViewGroupItem(
+                              id: answers.indexOf(answer).toString(),
+                              child: TeXViewDocument(String.fromCharCode(answers.indexOf(answer) + 65) + ": " + answer,
+                                  style: TeXViewStyle(
+                                    contentColor: Colors.white,
+                                    fontStyle: TeXViewFontStyle(fontSize: 20),
+                                    textAlign: TeXViewTextAlign.left,
+                                    padding: const TeXViewPadding.all(10, sizeUnit: TeXViewSizeUnit.pt),
+                                    margin: const TeXViewMargin.all(5, sizeUnit: TeXViewSizeUnit.pt),
+                                    borderRadius: const TeXViewBorderRadius.all(7, sizeUnit: TeXViewSizeUnit.pt),
+                                    backgroundColor: Colors.grey.shade900,
                                   )));
-                    } else {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Wrong(
-                                    theme: theme,
-                                    question: question,
-                                    answer: answers[correctAnswer],
-                                    wrongAnswer: answers[int.parse(index)],
-                                    explain: explain,
-                                  )));
-                    }
-                  })
-            ]),
-            renderingEngine: const TeXViewRenderingEngine.katex(),
-          ),
+                        }).toList(),
+                        onTap: (String index) {
+                          if (index == correctAnswer.toString()) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Correct(
+                                          theme: theme,
+                                          question: question,
+                                          answer: answers[int.parse(index)],
+                                          explain: explain,
+                                        )));
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Wrong(
+                                          theme: theme,
+                                          question: question,
+                                          answer: answers[correctAnswer],
+                                          wrongAnswer: answers[int.parse(index)],
+                                          explain: explain,
+                                        )));
+                          }
+                        })
+                  ]),
+                  renderingEngine: const TeXViewRenderingEngine.katex(),
+                ),
+              )
+              )
+          ]
+        )
         ),
       ),
     );
