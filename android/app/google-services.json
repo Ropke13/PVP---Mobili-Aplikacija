@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "56331451248",
+    "firebase_url": "https://matematika-21de2-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "matematika-21de2",
     "storage_bucket": "matematika-21de2.appspot.com"
   },
@@ -9,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:56331451248:android:604443882144b5964c2db5",
         "android_client_info": {
-          "package_name": "com.MathPro.MathPro"
+          "package_name": "com.example.matematika"
         }
       },
       "oauth_client": [

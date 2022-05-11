@@ -1,8 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:matematika/list.dart';
-import 'package:matematika/Login_Screen.dart';
+//import 'package:matematika/Login_Screen.dart';
+import 'package:matematika/test_firebase_con.dart';
 
-void main() => runApp(const MaterialApp(home: MainMenu()));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    // Replace with actual values
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyBYFz8vYl44GlU8z0jAIGOD8RNz_irh7tI",
+      appId: "1:56331451248:web:73ef6aaedb3f529e4c2db5",
+      messagingSenderId: "56331451248",
+      projectId: "matematika-21de2",
+    ),
+  );
+  runApp(const MaterialApp(home: MainMenu()));
+}
 
 class MainMenu extends StatelessWidget {
   // Icons
@@ -37,7 +51,7 @@ class MainMenu extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const HomePage()));
+                              builder: (context) => const test_firebase_con()));
                     },
                     child: const Icon(Icons.account_circle_rounded,
                         color: Colors.white, size: 60.0))

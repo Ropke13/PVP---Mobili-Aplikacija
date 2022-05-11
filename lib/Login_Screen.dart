@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
       user = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
-        print("No user found for that email");
+        //print("No user found for that email");
       }
     }
 
@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     email: _emailController.text,
                     password: _passwordController.text,
                     context: context);
-                print(user);
+                //print(user);
                 if (user != null) {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const MainMenu()));
