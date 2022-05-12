@@ -14,7 +14,7 @@ var completedColors = [Colors.green, Colors.red, Colors.red];
 class TestList extends StatelessWidget {
   const TestList({Key? key}) : super(key: key);
 
- @override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -22,8 +22,7 @@ class TestList extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainMenu())),
           ),
           title: const Text("Testai", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
@@ -71,8 +70,9 @@ class TestList extends StatelessWidget {
                                     builder: (context) => TextQuestion(
                                           theme: themeList[index],
                                           question: question[0],
-                                          answer: question[1],
-                                          explain: question[2],
+                                          regex: question[1],
+                                          answer: question[2],
+                                          explain: question[3],
                                         )));
                           }
                         },
@@ -88,7 +88,6 @@ class TestList extends StatelessWidget {
   }
 }
 
-
 class SubjectList extends StatelessWidget {
   const SubjectList({Key? key}) : super(key: key);
 
@@ -100,8 +99,7 @@ class SubjectList extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainMenu())),
           ),
           title: const Text("Temos", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
@@ -147,8 +145,9 @@ class SubjectList extends StatelessWidget {
                                     builder: (context) => TextQuestion(
                                           theme: themeList[index],
                                           question: question[0],
-                                          answer: question[1],
-                                          explain: question[2],
+                                          regex: question[1],
+                                          answer: question[2],
+                                          explain: question[3],
                                         )));
                           }
                         },

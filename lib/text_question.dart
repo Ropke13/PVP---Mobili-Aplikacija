@@ -3,13 +3,15 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:matematika/correct.dart';
 import 'package:matematika/list.dart';
 import 'package:matematika/wrong.dart';
+import 'package:matematika/utilities.dart';
 
 class TextQuestion extends StatefulWidget {
   final String theme;
   final String question;
   final String answer;
+  final String regex;
   final String explain;
-  const TextQuestion({Key? key, required this.theme, required this.question, required this.answer, required this.explain}) : super(key: key);
+  const TextQuestion({Key? key, required this.theme, required this.question, required this.answer, required this.regex, required this.explain}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -68,7 +70,7 @@ class TextQuestionState extends State<TextQuestion> {
                         controller: myController,
                         onEditingComplete: () {
                           var userAnswer = myController.text;
-                          bool correct = userAnswer == widget.answer;
+                          bool correct = regexCheck(widget.regex, userAnswer);
 
                           if (correct) {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => LearnCorrect(theme: widget.theme, question: widget.question, answer: widget.answer, explain: widget.explain)));

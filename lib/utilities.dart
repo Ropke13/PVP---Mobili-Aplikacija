@@ -4,7 +4,7 @@ int generateRandom(int min, int max) {
   return min + Random().nextInt(max - min);
 }
 
-// returns [question, answer, explanation]
+// returns [question, regex, answer, explanation]
 List<String> generateNewQuestion() {
   int digit1 = generateRandom(1, 10); // [1; 10)
   int digit2 = generateRandom(1, 10); // [1; 10)
@@ -12,7 +12,13 @@ List<String> generateNewQuestion() {
 
   String explain = "Sudauginus $digit1 su $digit2 gauname $answer";
 
-  return ["Kiek yra \\(" + digit1.toString() + "\\cdot" + digit2.toString() + "\\)?", answer, explain];
+  return ["Kiek yra \\(" + digit1.toString() + "\\cdot" + digit2.toString() + "\\)?", answer, answer, explain];
+}
+
+bool regexCheck(String regex, String input) {
+  RegExp exp = RegExp(regex, caseSensitive: false, unicode: true);
+
+  return exp.hasMatch(input);
 }
 
 // returns [question, answers, correctAnswer, explanation]
