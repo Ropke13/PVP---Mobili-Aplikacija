@@ -71,9 +71,9 @@ class TextQuestionState extends State<TextQuestion> {
                           bool correct = userAnswer == widget.answer;
 
                           if (correct) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Correct(theme: widget.theme, question: widget.question, answer: widget.answer, explain: widget.explain)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => LearnCorrect(theme: widget.theme, question: widget.question, answer: widget.answer, explain: widget.explain)));
                           } else {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Wrong(theme: widget.theme, question: widget.question, answer: widget.answer, wrongAnswer: userAnswer, explain: widget.explain)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => LearnWrong(theme: widget.theme, question: widget.question, answer: widget.answer, wrongAnswer: userAnswer, explain: widget.explain)));
                           }
                         },
                       )))

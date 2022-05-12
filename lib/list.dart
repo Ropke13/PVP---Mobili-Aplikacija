@@ -59,6 +59,7 @@ class TestList extends StatelessWidget {
                                           question: question[0],
                                           answers: question[1],
                                           correctAnswer: question[2],
+                                          count: 0,
                                           explain: question[3],
                                         )));
                           } else {
@@ -130,7 +131,7 @@ class SubjectList extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => TestQuestion(
+                                    builder: (context) => LearnQuestion(
                                           theme: themeList[index],
                                           question: question[0],
                                           answers: question[1],
