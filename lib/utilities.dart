@@ -26,7 +26,7 @@ bool regexCheck(String regex, String input) {
 List getTextQuestion() {
   return [
     r"""Apskaičiuokite skaitinio reiškinio \( \frac{19-6\sqrt{2}}{3 \sqrt{2} - 1} + 1 \) reikšmę.""",
-    r"""^3\s*(\*|\skart\s)?\s*([šs]aknis|sqrt)\s*\(?2\)?$""",
+    r"""^\s*3\s*(\*|\skart\s)?\s*([šs]aknis|sqrt|(square\s*)?root)\s*\(?2\)?\s*$""",
     r"""\(3 \sqrt{2}\)""",
     r"""\( \frac{19-6\sqrt{2}}{3 \sqrt{2} - 1} + 1 = \frac{19-6\sqrt{2}}{3\sqrt{2}-1} + \frac{3\sqrt{2}-1}{3\sqrt{2}-1} = \frac{19-6\sqrt{2}+3\sqrt{2}-1}{3\sqrt{2}-1} = \frac{18-3\sqrt{2}}{3\sqrt{2}-1} \cdot \frac{3\sqrt{2}+1}{3\sqrt{2}-1} = \frac{(18-3\sqrt{2})(3\sqrt{2}+1)}{(3\sqrt{2}+1)(3\sqrt{2}-1)} = \frac{54\sqrt{2}+18-9 \cdot 2 - 3 \sqrt{2}}{9\cdot 2 - 1}=\frac{51\sqrt{2}}{17}=3\sqrt{2}\)""",
     false
