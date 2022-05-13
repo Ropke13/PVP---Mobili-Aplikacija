@@ -8,7 +8,15 @@ class LearnWrong extends StatelessWidget {
   final String answer;
   final String wrongAnswer;
   final String explain;
-  const LearnWrong({Key? key, required this.theme, required this.question, required this.answer, required this.wrongAnswer, required this.explain}) : super(key: key);
+
+  const LearnWrong({
+    Key? key,
+    required this.theme,
+    required this.question,
+    required this.answer,
+    required this.wrongAnswer,
+    required this.explain,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +28,12 @@ class LearnWrong extends StatelessWidget {
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Text(theme, style: const TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
+          title: Text(theme,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+              )),
           backgroundColor: Colors.black,
           centerTitle: true,
         ),
@@ -28,64 +41,63 @@ class LearnWrong extends StatelessWidget {
           child: Column(children: <Widget>[
             const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
             Expanded(
-              flex: 5,
-              child: Align(
-                alignment: Alignment.center,
-                child: TeXView(
-                  child: TeXViewColumn(
-                    children: <TeXViewWidget>[
-                      TeXViewContainer(
-                          child: TeXViewColumn(children: <TeXViewWidget>[
-                            TeXViewDocument(question,
+                flex: 5,
+                child: Align(
+                    alignment: Alignment.center,
+                    child: TeXView(
+                        child: TeXViewColumn(
+                          children: <TeXViewWidget>[
+                            TeXViewContainer(
+                                child: TeXViewColumn(children: <TeXViewWidget>[
+                                  TeXViewDocument(question,
+                                      style: TeXViewStyle(
+                                        contentColor: Colors.white,
+                                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                                        textAlign: TeXViewTextAlign.center,
+                                        padding: const TeXViewPadding.only(
+                                          sizeUnit: TeXViewSizeUnit.pt,
+                                          top: 10,
+                                          bottom: 10,
+                                        ),
+                                      )),
+                                  TeXViewDocument(wrongAnswer,
+                                      style: TeXViewStyle(
+                                        contentColor: Colors.red,
+                                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                                        textAlign: TeXViewTextAlign.center,
+                                      )),
+                                ]),
+                                style: const TeXViewStyle(
+                                  padding: TeXViewPadding.only(
+                                    sizeUnit: TeXViewSizeUnit.pt,
+                                    left: 30,
+                                    right: 30,
+                                  ),
+                                )),
+                            TeXViewDocument("Neteisingai",
+                                style: TeXViewStyle(
+                                  contentColor: Colors.red,
+                                  fontStyle: TeXViewFontStyle(fontSize: 50, fontWeight: TeXViewFontWeight.bold),
+                                  textAlign: TeXViewTextAlign.center,
+                                )),
+                            TeXViewDocument(explain,
                                 style: TeXViewStyle(
                                   contentColor: Colors.white,
-                                  fontStyle: TeXViewFontStyle(fontSize: 20),
+                                  fontStyle: TeXViewFontStyle(fontSize: 15),
                                   textAlign: TeXViewTextAlign.center,
                                   padding: const TeXViewPadding.only(
                                     sizeUnit: TeXViewSizeUnit.pt,
+                                    left: 30,
+                                    right: 30,
                                     top: 10,
                                     bottom: 10,
                                   ),
                                 )),
-                            TeXViewDocument(wrongAnswer,
-                                style: TeXViewStyle(
-                                  contentColor: Colors.red,
-                                  fontStyle: TeXViewFontStyle(fontSize: 20),
-                                  textAlign: TeXViewTextAlign.center,
-                                )),
-                          ]),
-                          style: const TeXViewStyle(
-                            padding: TeXViewPadding.only(
-                              sizeUnit: TeXViewSizeUnit.pt,
-                              left: 30,
-                              right: 30,
-                            ),
-                          )),
-                      TeXViewDocument("Neteisingai",
-                          style: TeXViewStyle(
-                            contentColor: Colors.red,
-                            fontStyle: TeXViewFontStyle(fontSize: 50, fontWeight: TeXViewFontWeight.bold),
-                            textAlign: TeXViewTextAlign.center,
-                          )),
-                      TeXViewDocument(explain,
-                          style: TeXViewStyle(
-                            contentColor: Colors.white,
-                            fontStyle: TeXViewFontStyle(fontSize: 15),
-                            textAlign: TeXViewTextAlign.center,
-                            padding: const TeXViewPadding.only(
-                              sizeUnit: TeXViewSizeUnit.pt,
-                              left: 30,
-                              right: 30,
-                              top: 10,
-                              bottom: 10,
-                            ),
-                          )),
-                    ],
-                  ),
-                  renderingEngine: const TeXViewRenderingEngine.katex()
-                ))),
-                Expanded(
-                  child: InkWell(
+                          ],
+                        ),
+                        renderingEngine: const TeXViewRenderingEngine.katex()))),
+            Expanded(
+              child: InkWell(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
                   },
@@ -108,10 +120,8 @@ class LearnWrong extends StatelessWidget {
                         ]),
                       ),
                     )
-                ]
-              )
-            ),
-           )
+                  ])),
+            )
           ]),
         ),
       ),
@@ -126,7 +136,16 @@ class TestWrong extends StatelessWidget {
   final String wrongAnswer;
   final String explain;
   double count;
-  TestWrong({Key? key, required this.theme, required this.count, required this.question, required this.answer, required this.wrongAnswer, required this.explain}) : super(key: key);
+
+  TestWrong({
+    Key? key,
+    required this.theme,
+    required this.count,
+    required this.question,
+    required this.answer,
+    required this.wrongAnswer,
+    required this.explain,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -138,72 +157,81 @@ class TestWrong extends StatelessWidget {
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Text(theme, style: const TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
+          title: Text(theme,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+              )),
           backgroundColor: Colors.black,
           centerTitle: true,
         ),
         body: SafeArea(
           child: Column(children: <Widget>[
-            LinearProgressIndicator(value: count, backgroundColor: const Color.fromARGB(255, 21, 21, 21), color: Colors.green, minHeight: 5),
+            LinearProgressIndicator(
+              value: count,
+              backgroundColor: const Color.fromARGB(255, 21, 21, 21),
+              color: Colors.green,
+              minHeight: 5,
+            ),
             Expanded(
-              flex: 5,
-              child: Align(
-                alignment: Alignment.center,
-                child: TeXView(
-                  child: TeXViewColumn(
-                    children: <TeXViewWidget>[
-                      TeXViewContainer(
-                          child: TeXViewColumn(children: <TeXViewWidget>[
-                            TeXViewDocument(question,
+                flex: 5,
+                child: Align(
+                    alignment: Alignment.center,
+                    child: TeXView(
+                        child: TeXViewColumn(
+                          children: <TeXViewWidget>[
+                            TeXViewContainer(
+                                child: TeXViewColumn(children: <TeXViewWidget>[
+                                  TeXViewDocument(question,
+                                      style: TeXViewStyle(
+                                        contentColor: Colors.white,
+                                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                                        textAlign: TeXViewTextAlign.center,
+                                        padding: const TeXViewPadding.only(
+                                          sizeUnit: TeXViewSizeUnit.pt,
+                                          top: 10,
+                                          bottom: 10,
+                                        ),
+                                      )),
+                                  TeXViewDocument(wrongAnswer,
+                                      style: TeXViewStyle(
+                                        contentColor: Colors.red,
+                                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                                        textAlign: TeXViewTextAlign.center,
+                                      )),
+                                ]),
+                                style: const TeXViewStyle(
+                                  padding: TeXViewPadding.only(
+                                    sizeUnit: TeXViewSizeUnit.pt,
+                                    left: 30,
+                                    right: 30,
+                                  ),
+                                )),
+                            TeXViewDocument("Neteisingai",
+                                style: TeXViewStyle(
+                                  contentColor: Colors.red,
+                                  fontStyle: TeXViewFontStyle(fontSize: 50, fontWeight: TeXViewFontWeight.bold),
+                                  textAlign: TeXViewTextAlign.center,
+                                )),
+                            TeXViewDocument(explain,
                                 style: TeXViewStyle(
                                   contentColor: Colors.white,
-                                  fontStyle: TeXViewFontStyle(fontSize: 20),
+                                  fontStyle: TeXViewFontStyle(fontSize: 15),
                                   textAlign: TeXViewTextAlign.center,
                                   padding: const TeXViewPadding.only(
                                     sizeUnit: TeXViewSizeUnit.pt,
+                                    left: 30,
+                                    right: 30,
                                     top: 10,
                                     bottom: 10,
                                   ),
                                 )),
-                            TeXViewDocument(wrongAnswer,
-                                style: TeXViewStyle(
-                                  contentColor: Colors.red,
-                                  fontStyle: TeXViewFontStyle(fontSize: 20),
-                                  textAlign: TeXViewTextAlign.center,
-                                )),
-                          ]),
-                          style: const TeXViewStyle(
-                            padding: TeXViewPadding.only(
-                              sizeUnit: TeXViewSizeUnit.pt,
-                              left: 30,
-                              right: 30,
-                            ),
-                          )),
-                      TeXViewDocument("Neteisingai",
-                          style: TeXViewStyle(
-                            contentColor: Colors.red,
-                            fontStyle: TeXViewFontStyle(fontSize: 50, fontWeight: TeXViewFontWeight.bold),
-                            textAlign: TeXViewTextAlign.center,
-                          )),
-                      TeXViewDocument(explain,
-                          style: TeXViewStyle(
-                            contentColor: Colors.white,
-                            fontStyle: TeXViewFontStyle(fontSize: 15),
-                            textAlign: TeXViewTextAlign.center,
-                            padding: const TeXViewPadding.only(
-                              sizeUnit: TeXViewSizeUnit.pt,
-                              left: 30,
-                              right: 30,
-                              top: 10,
-                              bottom: 10,
-                            ),
-                          )),
-                    ],
-                  ),
-                  renderingEngine: const TeXViewRenderingEngine.katex()
-                ))),
-                Expanded(
-                  child: InkWell(
+                          ],
+                        ),
+                        renderingEngine: const TeXViewRenderingEngine.katex()))),
+            Expanded(
+              child: InkWell(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
                   },
@@ -226,10 +254,8 @@ class TestWrong extends StatelessWidget {
                         ]),
                       ),
                     )
-                ]
-              )
-            ),
-           )
+                  ])),
+            )
           ]),
         ),
       ),
