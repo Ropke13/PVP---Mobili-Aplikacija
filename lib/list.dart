@@ -22,9 +22,16 @@ class TestList extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => const MainMenu(),
+            )),
           ),
-          title: const Text("Testai", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
+          title: const Text("Testai",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+              )),
           backgroundColor: Colors.black,
           centerTitle: true,
         ),
@@ -62,7 +69,16 @@ class TestList extends StatelessWidget {
                                           explain: question[3],
                                         )));
                           } else {
-                            List<String> question = generateNewQuestion();
+                            int random = generateRandom(0, 2);
+                            List question;
+
+                            switch (random) {
+                              case 0:
+                                question = generateNewQuestion();
+                                break;
+                              default:
+                                question = getTextQuestion();
+                            }
 
                             Navigator.push(
                                 context,
@@ -73,6 +89,7 @@ class TestList extends StatelessWidget {
                                           regex: question[1],
                                           answer: question[2],
                                           explain: question[3],
+                                          isOnlyNumberAnswer: question[4],
                                         )));
                           }
                         },
@@ -99,9 +116,16 @@ class SubjectList extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => const MainMenu(),
+            )),
           ),
-          title: const Text("Temos", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
+          title: const Text("Temos",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+              )),
           backgroundColor: Colors.black,
           centerTitle: true,
         ),
@@ -137,7 +161,16 @@ class SubjectList extends StatelessWidget {
                                           explain: question[3],
                                         )));
                           } else {
-                            List<String> question = generateNewQuestion();
+                            int random = generateRandom(0, 2);
+                            List question;
+
+                            switch (random) {
+                              case 0:
+                                question = generateNewQuestion();
+                                break;
+                              default:
+                                question = getTextQuestion();
+                            }
 
                             Navigator.push(
                                 context,
@@ -148,6 +181,7 @@ class SubjectList extends StatelessWidget {
                                           regex: question[1],
                                           answer: question[2],
                                           explain: question[3],
+                                          isOnlyNumberAnswer: question[4],
                                         )));
                           }
                         },

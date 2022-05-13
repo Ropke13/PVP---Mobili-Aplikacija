@@ -4,21 +4,33 @@ int generateRandom(int min, int max) {
   return min + Random().nextInt(max - min);
 }
 
-// returns [question, regex, answer, explanation]
-List<String> generateNewQuestion() {
+// returns [question, regex, answer, explanation, isOnlyNumberAnswer]
+List generateNewQuestion() {
   int digit1 = generateRandom(1, 10); // [1; 10)
   int digit2 = generateRandom(1, 10); // [1; 10)
   String answer = (digit1 * digit2).toString();
 
+  String regex = "^" + answer + "\$";
   String explain = "Sudauginus $digit1 su $digit2 gauname $answer";
 
-  return ["Kiek yra \\(" + digit1.toString() + "\\cdot" + digit2.toString() + "\\)?", answer, answer, explain];
+  return ["Kiek yra \\(" + digit1.toString() + "\\cdot" + digit2.toString() + "\\)?", regex, answer, explain, true];
 }
 
 bool regexCheck(String regex, String input) {
   RegExp exp = RegExp(regex, caseSensitive: false, unicode: true);
 
   return exp.hasMatch(input);
+}
+
+// returns [question, regex, answer, explanation, isOnlyNumberAnswer]
+List getTextQuestion() {
+  return [
+    r"""Apskaičiuokite skaitinio reiškinio \( \frac{19-6\sqrt{2}}{3 \sqrt{2} - 1} + 1 \) reikšmę.""",
+    r"""^3\s*(\*|\skart\s)?\s*([šs]aknis|sqrt)\s*\(?2\)?$""",
+    r"""\(3 \sqrt{2}\)""",
+    r"""\( \frac{19-6\sqrt{2}}{3 \sqrt{2} - 1} + 1 = \frac{19-6\sqrt{2}}{3\sqrt{2}-1} + \frac{3\sqrt{2}-1}{3\sqrt{2}-1} = \frac{19-6\sqrt{2}+3\sqrt{2}-1}{3\sqrt{2}-1} = \frac{18-3\sqrt{2}}{3\sqrt{2}-1} \cdot \frac{3\sqrt{2}+1}{3\sqrt{2}-1} = \frac{(18-3\sqrt{2})(3\sqrt{2}+1)}{(3\sqrt{2}+1)(3\sqrt{2}-1)} = \frac{54\sqrt{2}+18-9 \cdot 2 - 3 \sqrt{2}}{9\cdot 2 - 1}=\frac{51\sqrt{2}}{17}=3\sqrt{2}\)""",
+    false
+  ];
 }
 
 // returns [question, answers, correctAnswer, explanation]
