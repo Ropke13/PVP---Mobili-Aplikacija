@@ -6,7 +6,7 @@ import 'package:matematika/text_question.dart';
 import 'package:matematika/utilities.dart';
 
 // Tures but duomenu bazej
-var themeList = ['Skaičiai ir skaičiavimai', 'Lygtys ir lygčių sistemos'];
+var themeList = ['Skaičiai ir skaičiavimai', 'Lygtys ir jų sistemos'];
 var iconList = ['1', '='];
 var colorList = [Colors.green, Colors.green];
 var completed = [Icons.check, Icons.cancel_outlined];
