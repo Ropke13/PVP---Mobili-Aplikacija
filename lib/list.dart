@@ -6,11 +6,11 @@ import 'package:matematika/text_question.dart';
 import 'package:matematika/utilities.dart';
 
 // Tures but duomenu bazej
-var themeList = ['Skaičiai ir skaičiavimai', 'Lygtys ir jų sistemos'];
-var iconList = ['1', '='];
-var colorList = [Colors.green, Colors.green];
-var completed = [Icons.check, Icons.cancel_outlined];
-var completedColors = [Colors.green, Colors.red];
+var themeList = ['Skaičiai ir skaičiavimai', 'Lygtys ir jų sistemos', 'Logaritminės funkcijos'];
+var iconList = ['1', '=', 'lg'];
+var colorList = [Colors.green, Colors.green, Colors.green];
+var completed = [Icons.check, Icons.cancel_outlined, Icons.check];
+var completedColors = [Colors.green, Colors.red, Colors.green];
 
 class TestList extends StatelessWidget {
   const TestList({Key? key}) : super(key: key);
