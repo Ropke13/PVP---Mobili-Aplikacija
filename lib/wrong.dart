@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:matematika/list.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 
+import 'package:matematika/test_question.dart';
+import 'package:matematika/text_question.dart';
+import 'package:matematika/utilities.dart';
+
 class LearnWrong extends StatelessWidget {
   final String theme;
   final String question;
@@ -98,8 +102,41 @@ class LearnWrong extends StatelessWidget {
                         renderingEngine: const TeXViewRenderingEngine.katex()))),
             Expanded(
               child: InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
+                  onTap: () async {
+                    final question = await generateQuestion(theme);
+                          bool checker = question?['is_text'];
+                          if (checker)
+                          {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TextQuestion(
+                                          theme: theme,
+                                          question: question?['uzdavinys'],
+                                          answer: question?['correct_answer'],
+                                          regex: question?['regex'],
+                                          isOnlyNumberAnswer: question?['is_numbers_only'],
+                                          explain: question?['explain'],
+                                  )
+                                )
+                              );
+                          }
+                          else
+                          {
+                            List<String> answersList = List<String>.from(question?['answers']);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LearnQuestion(
+                                          theme: theme,
+                                          question: question?['uzdavinys'],
+                                          answers: answersList,
+                                          correctAnswer: question?['correct_answer'],
+                                          explain: question?['explain'],
+                                  )
+                                )
+                              );
+                          }      
                   },
                   child: Column(children: <Widget>[
                     SizedBox(

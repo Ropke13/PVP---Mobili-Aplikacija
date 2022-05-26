@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:matematika/main.dart';
 import 'package:matematika/test_question.dart';
@@ -14,7 +15,7 @@ var completedColors = [Colors.green, Colors.red, Colors.red];
 class TestList extends StatelessWidget {
   const TestList({Key? key}) : super(key: key);
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -23,15 +24,9 @@ class TestList extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const MainMenu(),
-            )),
+                      builder: (context) => const MainMenu())),
           ),
-          title: const Text("Testai",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold,
-              )),
+          title: const Text("Testai", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
           centerTitle: true,
         ),
@@ -54,44 +49,41 @@ class TestList extends StatelessWidget {
                         ),
                         title: Text(themeList[index], style: const TextStyle(fontSize: 20)),
                         trailing: Icon(completed[index], size: 30, color: completedColors[index]),
-                        onTap: () {
-                          if (index == 0) {
-                            List question = getNumberQuestion();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => TestQuestion(
-                                          theme: themeList[index],
-                                          question: question[0],
-                                          answers: question[1],
-                                          correctAnswer: question[2],
-                                          count: 0,
-                                          explain: question[3],
-                                        )));
-                          } else {
-                            int random = generateRandom(0, 2);
-                            List question;
-
-                            switch (random) {
-                              case 0:
-                                question = generateNewQuestion();
-                                break;
-                              default:
-                                question = getTextQuestion();
-                            }
-
+                        onTap: () async {
+                          final question = await generateQuestion(themeList[index]);
+                          bool checker = question?['is_text'];
+                          if (checker)
+                          {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => TextQuestion(
                                           theme: themeList[index],
-                                          question: question[0],
-                                          regex: question[1],
-                                          answer: question[2],
-                                          explain: question[3],
-                                          isOnlyNumberAnswer: question[4],
-                                        )));
+                                          question: question?['uzdavinys'],
+                                          answer: question?['correct_answer'],
+                                          regex: question?['regex'],
+                                          isOnlyNumberAnswer: question?['is_numbers_only'],
+                                          explain: question?['explain'],
+                                  )
+                                )
+                              );
                           }
+                          else
+                          {
+                            List<String> answersList = List<String>.from(question?['answers']);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LearnQuestion(
+                                          theme: themeList[index],
+                                          question: question?['uzdavinys'],
+                                          answers: answersList,
+                                          correctAnswer: question?['correct_answer'],
+                                          explain: question?['explain'],
+                                  )
+                                )
+                              );
+                          }                   
                         },
                       ),
                       const Divider(color: Colors.black, thickness: 2),
@@ -117,15 +109,9 @@ class SubjectList extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const MainMenu(),
-            )),
+                      builder: (context) => const MainMenu())),
           ),
-          title: const Text("Temos",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold,
-              )),
+          title: const Text("Temos", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
           centerTitle: true,
         ),
@@ -147,42 +133,44 @@ class SubjectList extends StatelessWidget {
                           backgroundColor: Colors.black,
                         ),
                         title: Text(themeList[index], style: const TextStyle(fontSize: 20)),
-                        onTap: () {
-                          if (index == 0) {
-                            List question = getNumberQuestion();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LearnQuestion(
-                                          theme: themeList[index],
-                                          question: question[0],
-                                          answers: question[1],
-                                          correctAnswer: question[2],
-                                          explain: question[3],
-                                        )));
-                          } else {
-                            int random = generateRandom(0, 2);
-                            List question;
-
-                            switch (random) {
-                              case 0:
-                                question = generateNewQuestion();
-                                break;
-                              default:
-                                question = getTextQuestion();
-                            }
-
+                        onTap: () async {
+                          final question = await generateQuestion(themeList[index]);
+                          bool checker = question?['is_text'];
+                          print(themeList[index]);
+                          print(question?['uzdavinys']);
+                          print(question?['correct_answer']);
+                          print(question?['explain']);
+                          if (checker)
+                          {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => TextQuestion(
                                           theme: themeList[index],
-                                          question: question[0],
-                                          regex: question[1],
-                                          answer: question[2],
-                                          explain: question[3],
-                                          isOnlyNumberAnswer: question[4],
-                                        )));
+                                          question: question?['uzdavinys'],
+                                          answer: question?['correct_answer'],
+                                          regex: question?['regex'],
+                                          isOnlyNumberAnswer: question?['is_numbers_only'],
+                                          explain: question?['explain'],
+                                  )
+                                )
+                              );
+                          }
+                          else
+                          {
+                            List<String> answersList = List<String>.from(question?['answers']);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LearnQuestion(
+                                          theme: themeList[index],
+                                          question: question?['uzdavinys'],
+                                          answers: answersList,
+                                          correctAnswer: question?['correct_answer'],
+                                          explain: question?['explain'],
+                                  )
+                                )
+                              );
                           }
                         },
                       ),
