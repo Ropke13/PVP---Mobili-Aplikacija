@@ -9,13 +9,13 @@ import 'package:matematika/utilities.dart';
 var themeList = ['Skaičiai ir skaičiavimai', 'Lygtys ir jų sistemos', 'Logaritminės funkcijos'];
 var iconList = ['1', '=', 'lg'];
 var colorList = [Colors.green, Colors.green, Colors.green];
-var completed = [Icons.check, Icons.cancel_outlined, Icons.cancel_outlined];
-var completedColors = [Colors.green, Colors.red, Colors.red];
+var completed = [Icons.check, Icons.cancel_outlined, Icons.check];
+var completedColors = [Colors.green, Colors.red, Colors.green];
 
 class TestList extends StatelessWidget {
   const TestList({Key? key}) : super(key: key);
 
- @override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -23,8 +23,7 @@ class TestList extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainMenu())),
           ),
           title: const Text("Testai", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
@@ -52,8 +51,7 @@ class TestList extends StatelessWidget {
                         onTap: () async {
                           final question = await generateQuestion(themeList[index]);
                           bool checker = question?['is_text'];
-                          if (checker)
-                          {
+                          if (checker) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -64,12 +62,8 @@ class TestList extends StatelessWidget {
                                           regex: question?['regex'],
                                           isOnlyNumberAnswer: question?['is_numbers_only'],
                                           explain: question?['explain'],
-                                  )
-                                )
-                              );
-                          }
-                          else
-                          {
+                                        )));
+                          } else {
                             List<String> answersList = List<String>.from(question?['answers']);
                             Navigator.push(
                                 context,
@@ -80,10 +74,8 @@ class TestList extends StatelessWidget {
                                           answers: answersList,
                                           correctAnswer: question?['correct_answer'],
                                           explain: question?['explain'],
-                                  )
-                                )
-                              );
-                          }                   
+                                        )));
+                          }
                         },
                       ),
                       const Divider(color: Colors.black, thickness: 2),
@@ -108,8 +100,7 @@ class SubjectList extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainMenu())),
           ),
           title: const Text("Temos", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
@@ -140,8 +131,7 @@ class SubjectList extends StatelessWidget {
                           print(question?['uzdavinys']);
                           print(question?['correct_answer']);
                           print(question?['explain']);
-                          if (checker)
-                          {
+                          if (checker) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -152,12 +142,8 @@ class SubjectList extends StatelessWidget {
                                           regex: question?['regex'],
                                           isOnlyNumberAnswer: question?['is_numbers_only'],
                                           explain: question?['explain'],
-                                  )
-                                )
-                              );
-                          }
-                          else
-                          {
+                                        )));
+                          } else {
                             List<String> answersList = List<String>.from(question?['answers']);
                             Navigator.push(
                                 context,
@@ -168,9 +154,7 @@ class SubjectList extends StatelessWidget {
                                           answers: answersList,
                                           correctAnswer: question?['correct_answer'],
                                           explain: question?['explain'],
-                                  )
-                                )
-                              );
+                                        )));
                           }
                         },
                       ),
