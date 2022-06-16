@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+import 'package:matematika/achievements.dart';
 import 'package:matematika/test_firebase_con.dart';
 import 'package:flutter/material.dart';
 import 'package:matematika/list.dart';
@@ -27,8 +29,6 @@ class MainMenu extends StatelessWidget {
 
   static const IconData award =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cog =
-      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData pencilSquared =
       IconData(0xf14b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
@@ -160,7 +160,7 @@ class MainMenu extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SubjectList()));
+                                  builder: (context) => const Achievements()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -192,10 +192,7 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SubjectList()));
+                          SystemNavigator.pop();
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -209,8 +206,8 @@ class MainMenu extends StatelessWidget {
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: const <Widget>[
-                                    Icon(cog, color: Colors.red, size: 63.5),
-                                    Text("Nustatymai",
+                                    Icon(Icons.exit_to_app, color: Colors.red, size: 63.5),
+                                    Text("Išeiti",
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                           color: Colors.white,
