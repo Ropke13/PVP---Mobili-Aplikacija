@@ -64,7 +64,8 @@ class MainState extends State<MainMenu> {
                 tileColor: const Color.fromARGB(255, 21, 21, 21),
                 textColor: Colors.white,
                 title: const Text("Rodyti paaiškinimus", style: TextStyle(fontSize: 20)),
-                trailing: Checkbox(
+                trailing: Theme(
+                  child: Checkbox(
                   value: isChecked ?? false,
                   activeColor: Colors.green,
                   checkColor: Colors.white,
@@ -75,6 +76,10 @@ class MainState extends State<MainMenu> {
                         isChecked = newValue!;
                       });
                   },
+                ),
+                data: ThemeData(
+                  unselectedWidgetColor: Colors.white
+                )
                 ),
               ),
               ListTile(

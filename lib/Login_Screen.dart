@@ -124,10 +124,6 @@ class _LoginScreenState extends State<LoginScreen> {
           const SizedBox(
             height: 12.0,
           ),
-          const Text(
-            "Pamiršote slaptažodį ?",
-            style: TextStyle(color: Colors.blue),
-          ),
           const SizedBox(
             height: 88.0,
           ),
