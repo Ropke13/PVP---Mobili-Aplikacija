@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:matematika/main.dart';
+import 'package:matematika/utilities.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -67,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
         //print("No user found for that email");
       }
     }
+
 
     return user;
   }
@@ -144,8 +146,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     context: context);
                 //print(user);
                 if (user != null) {
+                  setConnected(user);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const MainMenu()));
+                      builder: (context) => MainMenu()));
                 }
               },
               child: const Text("Prisijungti",

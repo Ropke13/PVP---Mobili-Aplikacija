@@ -12,6 +12,7 @@ class TextQuestion extends StatefulWidget {
   final String regex;
   final String explain;
   final bool isOnlyNumberAnswer;
+  final bool rodyti;
 
   const TextQuestion({
     Key? key,
@@ -21,6 +22,7 @@ class TextQuestion extends StatefulWidget {
     required this.regex,
     required this.explain,
     required this.isOnlyNumberAnswer,
+    required this.rodyti
   }) : super(key: key);
 
   @override
@@ -48,7 +50,7 @@ class TextQuestionState extends State<TextQuestion> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const SubjectList(),
+              builder: (context) => SubjectList(rodyti: widget.rodyti),
             )),
           ),
           title: Text(widget.theme,
@@ -103,6 +105,7 @@ class TextQuestionState extends State<TextQuestion> {
                                           question: widget.question,
                                           answer: widget.answer,
                                           explain: widget.explain,
+                                          rodyti: widget.rodyti
                                         )));
                           } else {
                             Navigator.push(
@@ -114,6 +117,7 @@ class TextQuestionState extends State<TextQuestion> {
                                           answer: widget.answer,
                                           wrongAnswer: userAnswer,
                                           explain: widget.explain,
+                                          rodyti: widget.rodyti
                                         )));
                           }
                         },

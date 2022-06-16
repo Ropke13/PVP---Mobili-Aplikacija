@@ -13,7 +13,13 @@ var completed = [Icons.check, Icons.cancel_outlined, Icons.check];
 var completedColors = [Colors.green, Colors.red, Colors.green];
 
 class TestList extends StatelessWidget {
-  const TestList({Key? key}) : super(key: key);
+
+  final bool rodyti;
+
+  const TestList({
+    Key? key,
+    required this.rodyti
+    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class TestList extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainMenu())),
           ),
           title: const Text("Testai", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
@@ -62,6 +68,7 @@ class TestList extends StatelessWidget {
                                           regex: question?['regex'],
                                           isOnlyNumberAnswer: question?['is_numbers_only'],
                                           explain: question?['explain'],
+                                          rodyti: rodyti
                                         )));
                           } else {
                             List<String> answersList = List<String>.from(question?['answers']);
@@ -74,6 +81,7 @@ class TestList extends StatelessWidget {
                                           answers: answersList,
                                           correctAnswer: question?['correct_answer'],
                                           explain: question?['explain'],
+                                          rodyti: rodyti
                                         )));
                           }
                         },
@@ -90,7 +98,12 @@ class TestList extends StatelessWidget {
 }
 
 class SubjectList extends StatelessWidget {
-  const SubjectList({Key? key}) : super(key: key);
+  final bool rodyti;
+
+  const SubjectList({
+    Key? key,
+    required this.rodyti
+    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +113,7 @@ class SubjectList extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainMenu())),
           ),
           title: const Text("Temos", style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold)),
           backgroundColor: Colors.black,
@@ -127,10 +140,6 @@ class SubjectList extends StatelessWidget {
                         onTap: () async {
                           final question = await generateQuestion(themeList[index]);
                           bool checker = question?['is_text'];
-                          print(themeList[index]);
-                          print(question?['uzdavinys']);
-                          print(question?['correct_answer']);
-                          print(question?['explain']);
                           if (checker) {
                             Navigator.push(
                                 context,
@@ -142,6 +151,7 @@ class SubjectList extends StatelessWidget {
                                           regex: question?['regex'],
                                           isOnlyNumberAnswer: question?['is_numbers_only'],
                                           explain: question?['explain'],
+                                          rodyti: rodyti
                                         )));
                           } else {
                             List<String> answersList = List<String>.from(question?['answers']);
@@ -154,6 +164,7 @@ class SubjectList extends StatelessWidget {
                                           answers: answersList,
                                           correctAnswer: question?['correct_answer'],
                                           explain: question?['explain'],
+                                          rodyti: rodyti
                                         )));
                           }
                         },

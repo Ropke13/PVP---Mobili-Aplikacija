@@ -1,5 +1,33 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+User? user = null;
+
+User? getConnected(){
+  return user;  
+}
+
+void setConnected(User u){
+    user = u;
+}
+
+void setNull(Null n){
+  user = n;
+}
+
+String? getName()
+{
+  if (user != null)
+  {
+    return user?.email;
+  }
+  else
+  {
+      return "";
+  }
+}
 
 int generateRandom(int min, int max) {
   return min + Random().nextInt(max - min);

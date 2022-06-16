@@ -11,6 +11,7 @@ class LearnCorrect extends StatelessWidget {
   final String question;
   final String answer;
   final String explain;
+  final bool rodyti;
 
   const LearnCorrect({
     Key? key,
@@ -18,6 +19,7 @@ class LearnCorrect extends StatelessWidget {
     required this.question,
     required this.answer,
     required this.explain,
+    required this.rodyti
   }) : super(key: key);
 
   @override
@@ -82,6 +84,7 @@ class LearnCorrect extends StatelessWidget {
                                   fontStyle: TeXViewFontStyle(fontSize: 50, fontWeight: TeXViewFontWeight.bold),
                                   textAlign: TeXViewTextAlign.center,
                                 )),
+                            if (rodyti == true)...[
                             TeXViewDocument(explain,
                                 style: TeXViewStyle(
                                   contentColor: Colors.white,
@@ -95,6 +98,7 @@ class LearnCorrect extends StatelessWidget {
                                     bottom: 10,
                                   ),
                                 )),
+                            ]
                           ],
                         ),
                         renderingEngine: const TeXViewRenderingEngine.katex()))),
@@ -115,6 +119,7 @@ class LearnCorrect extends StatelessWidget {
                                           regex: question?['regex'],
                                           isOnlyNumberAnswer: question?['is_numbers_only'],
                                           explain: question?['explain'],
+                                          rodyti: rodyti
                                   )
                                 )
                               );
@@ -131,6 +136,7 @@ class LearnCorrect extends StatelessWidget {
                                           answers: answersList,
                                           correctAnswer: question?['correct_answer'],
                                           explain: question?['explain'],
+                                          rodyti: rodyti
                                   )
                                 )
                               );
@@ -169,6 +175,7 @@ class TestCorrect extends StatelessWidget {
   final String question;
   final String answer;
   final String explain;
+  final bool rodyti;
   double count;
 
   TestCorrect({
@@ -178,6 +185,7 @@ class TestCorrect extends StatelessWidget {
     required this.question,
     required this.answer,
     required this.explain,
+    required this.rodyti
   }) : super(key: key);
 
   @override
@@ -247,6 +255,7 @@ class TestCorrect extends StatelessWidget {
                                   fontStyle: TeXViewFontStyle(fontSize: 50, fontWeight: TeXViewFontWeight.bold),
                                   textAlign: TeXViewTextAlign.center,
                                 )),
+                            if (rodyti == true)...[
                             TeXViewDocument(explain,
                                 style: TeXViewStyle(
                                   contentColor: Colors.white,
@@ -260,13 +269,14 @@ class TestCorrect extends StatelessWidget {
                                     bottom: 10,
                                   ),
                                 )),
+                            ]
                           ],
                         ),
                         renderingEngine: const TeXViewRenderingEngine.katex()))),
             Expanded(
               child: InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList(rodyti: rodyti)));
                   },
                   child: Column(children: <Widget>[
                     SizedBox(

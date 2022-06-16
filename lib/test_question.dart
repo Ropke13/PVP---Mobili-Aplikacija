@@ -14,6 +14,7 @@ class LearnQuestion extends StatelessWidget {
   final List<String> answers;
   final int correctAnswer;
   final String explain;
+  final bool rodyti;
 
   const LearnQuestion({
     Key? key,
@@ -22,6 +23,7 @@ class LearnQuestion extends StatelessWidget {
     required this.answers,
     required this.correctAnswer,
     required this.explain,
+    required this.rodyti
   }) : super(key: key);
 
   @override
@@ -33,7 +35,7 @@ class LearnQuestion extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const SubjectList(),
+              builder: (context) => SubjectList(rodyti: rodyti),
             )),
           ),
           title: Text(theme,
@@ -85,6 +87,7 @@ class LearnQuestion extends StatelessWidget {
                                       question: question,
                                       answer: answers[int.parse(index)],
                                       explain: explain,
+                                      rodyti: rodyti
                                     )));
                       } else {
                         Navigator.push(
@@ -96,6 +99,7 @@ class LearnQuestion extends StatelessWidget {
                                       answer: answers[correctAnswer],
                                       wrongAnswer: answers[int.parse(index)],
                                       explain: explain,
+                                      rodyti: rodyti,
                                     )));
                       }
                     })
@@ -116,6 +120,7 @@ class TestQuestion extends StatelessWidget {
   final int correctAnswer;
   final double count;
   final String explain;
+  final bool rodyti;
 
   const TestQuestion({
     Key? key,
@@ -125,6 +130,7 @@ class TestQuestion extends StatelessWidget {
     required this.correctAnswer,
     required this.count,
     required this.explain,
+    required this.rodyti
   }) : super(key: key);
 
   @override
@@ -136,7 +142,7 @@ class TestQuestion extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const SubjectList(),
+              builder: (context) => SubjectList(rodyti: rodyti),
             )),
           ),
           title: Text(theme,
@@ -194,6 +200,7 @@ class TestQuestion extends StatelessWidget {
                                       answer: answers[int.parse(index)],
                                       count: count + 0.1,
                                       explain: explain,
+                                      rodyti: rodyti
                                     )));
                       } else {
                         Navigator.push(
@@ -206,6 +213,7 @@ class TestQuestion extends StatelessWidget {
                                       count: count + 0.1,
                                       wrongAnswer: answers[int.parse(index)],
                                       explain: explain,
+                                      rodyti: rodyti
                                     )));
                       }
                     })

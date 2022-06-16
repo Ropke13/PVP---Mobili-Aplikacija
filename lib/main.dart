@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:matematika/list.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:matematika/Login_Screen.dart';
+import 'package:matematika/utilities.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,26 +22,79 @@ void main() async {
     ),
     name: "DevApp",
   );
-  runApp(const MaterialApp(home: MainMenu()));
+  runApp(MaterialApp(home: MainMenu()));
 }
 
-class MainMenu extends StatelessWidget {
+class MainMenu extends StatefulWidget {
+  MainState createState() => MainState();
+}
+
+class MainState extends State<MainMenu> {
   // Icons
   static const _kFontFam = 'MyFlutterApp';
   static const String? _kFontPkg = null;
+  final globalKey = GlobalKey<ScaffoldState>();
+  bool? isChecked;
 
   static const IconData award =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData pencilSquared =
       IconData(0xf14b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
-  const MainMenu({Key? key}) : super(key: key);
-
   // Menu
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: globalKey,
         backgroundColor: Colors.black,
+        drawer: Drawer(
+          backgroundColor: const Color.fromARGB(255, 21, 21, 21),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              ListTile(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                tileColor: const Color.fromARGB(255, 21, 21, 21),
+                textColor: Colors.white,
+                leading: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 50),
+                title: Text(getName()!, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+              ),
+              ListTile(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
+                tileColor: const Color.fromARGB(255, 21, 21, 21),
+                textColor: Colors.white,
+                title: const Text("Rodyti paaiškinimus", style: TextStyle(fontSize: 20)),
+                trailing: Checkbox(
+                  value: isChecked ?? false,
+                  activeColor: Colors.green,
+                  checkColor: Colors.white,
+                  focusColor: Colors.white,
+                  hoverColor: Colors.green,
+                  onChanged: (bool? newValue) {
+                      setState(() {
+                        isChecked = newValue!;
+                      });
+                  },
+                ),
+              ),
+              ListTile(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
+                tileColor: const Color.fromARGB(255, 21, 21, 21),
+              ),
+              ListTile(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
+                tileColor: const Color.fromARGB(255, 58, 56, 56),
+                textColor: Colors.red,
+                leading: const Icon(Icons.exit_to_app, color: Colors.red, size: 40),
+                title: const Text("Atsijungti", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                onTap: () {
+                  setNull(null);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          )
+        ),
         body: SafeArea(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           Padding(
@@ -48,7 +104,15 @@ class MainMenu extends StatelessWidget {
               children: <Widget>[
                 InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                      user = getConnected();
+                      if (user != null)
+                      {
+                          globalKey.currentState!.openDrawer();
+                      }
+                      else
+                      {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                      }                
                     },
                     child: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 60.0))
               ],
@@ -78,7 +142,7 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SubjectList()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList(rodyti: isChecked ?? false)));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -106,7 +170,7 @@ class MainMenu extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const TestList()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => TestList(rodyti: isChecked ?? false)));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
