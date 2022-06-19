@@ -1,13 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:matematika/achievements.dart';
-import 'package:matematika/test_firebase_con.dart';
 import 'package:flutter/material.dart';
 import 'package:matematika/list.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:matematika/Login_Screen.dart';
 import 'package:matematika/utilities.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,63 +42,72 @@ class MainState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: globalKey,
+        key: globalKey,
         backgroundColor: Colors.black,
         drawer: Drawer(
-          backgroundColor: const Color.fromARGB(255, 21, 21, 21),
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              ListTile(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                tileColor: const Color.fromARGB(255, 21, 21, 21),
-                textColor: Colors.white,
-                leading: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 50),
-                title: Text(getName()!, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-              ),
-              ListTile(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
-                tileColor: const Color.fromARGB(255, 21, 21, 21),
-                textColor: Colors.white,
-                title: const Text("Rodyti paaiškinimus", style: TextStyle(fontSize: 20)),
-                trailing: Theme(
-                  child: Checkbox(
-                  value: isChecked ?? false,
-                  activeColor: Colors.green,
-                  checkColor: Colors.white,
-                  focusColor: Colors.white,
-                  hoverColor: Colors.green,
-                  onChanged: (bool? newValue) {
-                      setState(() {
-                        isChecked = newValue!;
-                      });
+            backgroundColor: const Color.fromARGB(255, 21, 21, 21),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  tileColor: const Color.fromARGB(255, 21, 21, 21),
+                  textColor: Colors.white,
+                  leading: const Icon(Icons.account_circle_rounded,
+                      color: Colors.white, size: 50),
+                  title: Text(getName()!,
+                      style: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.bold)),
+                ),
+                ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7.0)),
+                  tileColor: const Color.fromARGB(255, 21, 21, 21),
+                  textColor: Colors.white,
+                  title: const Text("Rodyti paaiškinimus",
+                      style: TextStyle(fontSize: 20)),
+                  trailing: Theme(
+                      child: Checkbox(
+                        value: isChecked ?? false,
+                        activeColor: Colors.green,
+                        checkColor: Colors.white,
+                        focusColor: Colors.white,
+                        hoverColor: Colors.green,
+                        onChanged: (bool? newValue) {
+                          setState(() {
+                            isChecked = newValue!;
+                          });
+                        },
+                      ),
+                      data: ThemeData(unselectedWidgetColor: Colors.white)),
+                ),
+                ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7.0)),
+                  tileColor: const Color.fromARGB(255, 21, 21, 21),
+                ),
+                ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(7.0)),
+                  tileColor: const Color.fromARGB(255, 58, 56, 56),
+                  textColor: Colors.red,
+                  leading: const Icon(Icons.exit_to_app,
+                      color: Colors.red, size: 40),
+                  title: const Text("Atsijungti",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  onTap: () {
+                    setNull(null);
+                    Navigator.pop(context);
                   },
                 ),
-                data: ThemeData(
-                  unselectedWidgetColor: Colors.white
-                )
-                ),
-              ),
-              ListTile(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
-                tileColor: const Color.fromARGB(255, 21, 21, 21),
-              ),
-              ListTile(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
-                tileColor: const Color.fromARGB(255, 58, 56, 56),
-                textColor: Colors.red,
-                leading: const Icon(Icons.exit_to_app, color: Colors.red, size: 40),
-                title: const Text("Atsijungti", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                onTap: () {
-                  setNull(null);
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          )
-        ),
+              ],
+            )),
         body: SafeArea(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+                    Widget>[
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
@@ -110,16 +116,17 @@ class MainState extends State<MainMenu> {
                 InkWell(
                     onTap: () {
                       user = getConnected();
-                      if (user != null)
-                      {
-                          globalKey.currentState!.openDrawer();
+                      if (user != null) {
+                        globalKey.currentState!.openDrawer();
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()));
                       }
-                      else
-                      {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-                      }                
                     },
-                    child: const Icon(Icons.account_circle_rounded, color: Colors.white, size: 60.0))
+                    child: const Icon(Icons.account_circle_rounded,
+                        color: Colors.white, size: 60.0))
               ],
             ),
           ),
@@ -129,7 +136,10 @@ class MainState extends State<MainMenu> {
             child: Text(
               "Sveikas atvykęs į MathPro",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.bold),
             ),
           )),
           const Center(
@@ -147,7 +157,11 @@ class MainState extends State<MainMenu> {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList(rodyti: isChecked ?? false)));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      SubjectList(rodyti: isChecked ?? false)));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -156,18 +170,22 @@ class MainState extends State<MainMenu> {
                             child: Card(
                               color: const Color.fromARGB(255, 21, 21, 21),
                               elevation: 2.0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: const <Widget>[
-                                Icon(Icons.calculate_rounded, color: Colors.green, size: 72.5),
-                                Text("Mokytis",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      height: 1.2,
-                                    ))
-                              ]),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(Icons.calculate_rounded,
+                                        color: Colors.green, size: 72.5),
+                                    Text("Mokytis",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                          height: 1.2,
+                                        ))
+                                  ]),
                             ),
                           )
                         ]))),
@@ -175,7 +193,11 @@ class MainState extends State<MainMenu> {
                     padding: const EdgeInsets.all(15.0),
                     child: InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => TestList(rodyti: isChecked ?? false)));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      TestList(rodyti: isChecked ?? false)));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -184,18 +206,22 @@ class MainState extends State<MainMenu> {
                             child: Card(
                               color: const Color.fromARGB(255, 21, 21, 21),
                               elevation: 2.0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: const <Widget>[
-                                Icon(pencilSquared, color: Colors.blue, size: 66),
-                                Text("Testai",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      height: 1.45,
-                                    ))
-                              ]),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(pencilSquared,
+                                        color: Colors.blue, size: 66),
+                                    Text("Testai",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                          height: 1.45,
+                                        ))
+                                  ]),
                             ),
                           )
                         ]))),
@@ -215,18 +241,22 @@ class MainState extends State<MainMenu> {
                             child: Card(
                               color: const Color.fromARGB(255, 21, 21, 21),
                               elevation: 2.0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: const <Widget>[
-                                Icon(award, color: Colors.yellow, size: 63.5),
-                                Text("Pasiekimai",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0,
-                                      height: 1.6,
-                                    ))
-                              ]),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const <Widget>[
+                                    Icon(award,
+                                        color: Colors.yellow, size: 63.5),
+                                    Text("Pasiekimai",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18.0,
+                                          height: 1.6,
+                                        ))
+                                  ]),
                             ),
                           )
                         ]))),
@@ -248,7 +278,8 @@ class MainState extends State<MainMenu> {
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: const <Widget>[
-                                    Icon(Icons.exit_to_app, color: Colors.red, size: 63.5),
+                                    Icon(Icons.exit_to_app,
+                                        color: Colors.red, size: 63.5),
                                     Text("Išeiti",
                                         textAlign: TextAlign.start,
                                         style: TextStyle(

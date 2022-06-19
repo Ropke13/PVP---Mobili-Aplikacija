@@ -14,16 +14,16 @@ class TextQuestion extends StatefulWidget {
   final bool isOnlyNumberAnswer;
   final bool rodyti;
 
-  const TextQuestion({
-    Key? key,
-    required this.theme,
-    required this.question,
-    required this.answer,
-    required this.regex,
-    required this.explain,
-    required this.isOnlyNumberAnswer,
-    required this.rodyti
-  }) : super(key: key);
+  const TextQuestion(
+      {Key? key,
+      required this.theme,
+      required this.question,
+      required this.answer,
+      required this.regex,
+      required this.explain,
+      required this.isOnlyNumberAnswer,
+      required this.rodyti})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -49,7 +49,8 @@ class TextQuestionState extends State<TextQuestion> {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+            onPressed: () =>
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => SubjectList(rodyti: widget.rodyti),
             )),
           ),
@@ -65,7 +66,8 @@ class TextQuestionState extends State<TextQuestion> {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
+              const Divider(
+                  color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
               Expanded(
                   child: Align(
                 alignment: Alignment.center,
@@ -90,7 +92,9 @@ class TextQuestionState extends State<TextQuestion> {
                           labelText: "Įveskite atsakymą",
                           labelStyle: TextStyle(color: Colors.white54),
                         ),
-                        keyboardType: widget.isOnlyNumberAnswer ? TextInputType.number : TextInputType.text,
+                        keyboardType: widget.isOnlyNumberAnswer
+                            ? TextInputType.number
+                            : TextInputType.text,
                         controller: myController,
                         onEditingComplete: () {
                           var userAnswer = myController.text;
@@ -101,24 +105,153 @@ class TextQuestionState extends State<TextQuestion> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => LearnCorrect(
-                                          theme: widget.theme,
-                                          question: widget.question,
-                                          answer: widget.answer,
-                                          explain: widget.explain,
-                                          rodyti: widget.rodyti
-                                        )));
+                                        theme: widget.theme,
+                                        question: widget.question,
+                                        answer: widget.answer,
+                                        explain: widget.explain,
+                                        rodyti: widget.rodyti)));
                           } else {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => LearnWrong(
-                                          theme: widget.theme,
-                                          question: widget.question,
-                                          answer: widget.answer,
-                                          wrongAnswer: userAnswer,
-                                          explain: widget.explain,
-                                          rodyti: widget.rodyti
-                                        )));
+                                        theme: widget.theme,
+                                        question: widget.question,
+                                        answer: widget.answer,
+                                        wrongAnswer: userAnswer,
+                                        explain: widget.explain,
+                                        rodyti: widget.rodyti)));
+                          }
+                        },
+                      )))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TextQuestionTest extends StatefulWidget {
+  final double count;
+  final String theme;
+  final String question;
+  final String answer;
+  final String regex;
+  final String explain;
+  final bool isOnlyNumberAnswer;
+  final bool rodyti;
+
+  const TextQuestionTest(
+      {Key? key,
+      required this.count,
+      required this.theme,
+      required this.question,
+      required this.answer,
+      required this.regex,
+      required this.explain,
+      required this.isOnlyNumberAnswer,
+      required this.rodyti})
+      : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return TextQuestionTestState();
+  }
+}
+
+class TextQuestionTestState extends State<TextQuestionTest> {
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
+            onPressed: () =>
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => SubjectList(rodyti: widget.rodyti),
+            )),
+          ),
+          title: Text(widget.theme,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+              )),
+          backgroundColor: Colors.black,
+          centerTitle: true,
+        ),
+        body: SafeArea(
+          child: Column(
+            children: <Widget>[
+              const Divider(
+                  color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
+              Expanded(
+                  child: Align(
+                alignment: Alignment.center,
+                child: TeXView(
+                  child: TeXViewDocument(widget.question,
+                      style: TeXViewStyle(
+                        contentColor: Colors.white,
+                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                        textAlign: TeXViewTextAlign.center,
+                      )),
+                  renderingEngine: const TeXViewRenderingEngine.katex(),
+                ),
+              )),
+              Expanded(
+                  child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: TextField(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
+                          fillColor: Color.fromARGB(255, 21, 21, 21),
+                          filled: true,
+                          labelText: "Įveskite atsakymą",
+                          labelStyle: TextStyle(color: Colors.white54),
+                        ),
+                        keyboardType: widget.isOnlyNumberAnswer
+                            ? TextInputType.number
+                            : TextInputType.text,
+                        controller: myController,
+                        onEditingComplete: () {
+                          var userAnswer = myController.text;
+                          bool correct = regexCheck(widget.regex, userAnswer);
+
+                          if (correct) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TestCorrect(
+                                        count: 0,
+                                        theme: widget.theme,
+                                        question: widget.question,
+                                        answer: widget.answer,
+                                        explain: widget.explain,
+                                        rodyti: widget.rodyti)));
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TestWrong(
+                                        count: 0,
+                                        theme: widget.theme,
+                                        question: widget.question,
+                                        answer: widget.answer,
+                                        wrongAnswer: userAnswer,
+                                        explain: widget.explain,
+                                        rodyti: widget.rodyti)));
                           }
                         },
                       )))

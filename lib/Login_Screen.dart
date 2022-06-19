@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +67,6 @@ class _LoginScreenState extends State<LoginScreen> {
         //print("No user found for that email");
       }
     }
-
 
     return user;
   }
@@ -143,8 +141,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 //print(user);
                 if (user != null) {
                   setConnected(user);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => MainMenu()));
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => MainMenu()));
                 }
               },
               child: const Text("Prisijungti",
