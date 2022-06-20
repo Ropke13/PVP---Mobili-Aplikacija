@@ -5,22 +5,33 @@ import 'package:firebase_auth/firebase_auth.dart';
 User? user = null;
 
 int correct = 0;
+int correctTotal = 0;
 int countQuestions = 0;
+bool achieved = false;
 
 User? getConnected() {
   return user;
 }
 
-int corrrectcheck() {
+int getCorrect() {
   return correct;
 }
 
-int countcheck() {
+int getCountQuestions() {
   return countQuestions;
 }
 
-void addcorrect() {
+bool getAchieved() {
+  return achieved;
+}
+
+void addCorrect() {
   correct++;
+  correctTotal++;
+
+  if (correctTotal >= 10) {
+    achieved = true;
+  }
 }
 
 void countQ() {
