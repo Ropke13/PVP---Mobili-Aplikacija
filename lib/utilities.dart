@@ -7,7 +7,7 @@ User? user = null;
 bool rodyti = false;
 int correct = 0;
 int correctTotal = 0;
-double countQuestions = 0;
+int countQuestions = 0;
 List<int> visitedThemes = [];
 
 User? getConnected() {
@@ -18,7 +18,7 @@ int getCorrect() {
   return correct;
 }
 
-double getCountQuestions() {
+int getCountQuestions() {
   return countQuestions;
 }
 

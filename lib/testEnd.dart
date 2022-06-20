@@ -37,22 +37,27 @@ class TestEnd extends StatelessWidget {
             minHeight: 5,
           ),
             Expanded(
-                flex: 5,
+                flex: 2,
                 child: Align(alignment: Alignment.center,
                 child: Column(children: [
-                  const Text("Testo rezultatai:", style: TextStyle(color: Colors.white, fontSize: 70)),
+                  const Text("Testo rezultatai:", style: TextStyle(color: Colors.white, fontSize: 50)),
                   RichText(text: TextSpan(
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 50) ,
+                      fontSize: 40) ,
                     children: <TextSpan>[
                       TextSpan(text: correct.toString(), style: TextStyle(color: Colors.green)),
                       TextSpan(text: " / ", style: TextStyle(color: Colors.yellow)),
                       TextSpan(text: total.toString(), style: TextStyle(color: Colors.red))
                     ]
                   )
-                  ),
-              Expanded(
+                  )
+                ]
+                )
+                )
+            ),
+            Expanded(
+              child: Align(alignment: Alignment.bottomCenter,
               child: InkWell(
                   onTap: () {
                     resetCounts();
@@ -82,13 +87,10 @@ class TestEnd extends StatelessWidget {
                     )
               )
               )
+              )
                 ],)
             )
             )
-          ]
-          )
-        )
-      )
-    );
+          );
   }
 }

@@ -284,7 +284,7 @@ class TestCorrect extends StatelessWidget {
                     addCorrect();
                     if (getCountQuestions() >= 3) {
                       int correct = getCorrect();
-                      double total = getCountQuestions();
+                      double total = getCountQuestions().toDouble();
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => TestEnd(theme: theme, correct: correct, total: total)));
                     }
