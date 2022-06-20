@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:matematika/main.dart';
+import 'package:matematika/utilities.dart';
 
 var achievementTitles = ['Pasiekimai?', 'Proto bokštas'];
 var achievementDescriptions = [
   'Pasiekimai!',
   'Teisingai atsakyta į 10 klausimų'
 ];
-var achieved = [true, false];
+var achieved = [(){return true;}, (){return getAchieved();}];
 
 class Achievements extends StatelessWidget {
   const Achievements({Key? key}) : super(key: key);
@@ -49,7 +50,7 @@ class Achievements extends StatelessWidget {
                             leading: CircleAvatar(
                               child: Text((index + 1).toString(),
                                   style: TextStyle(
-                                    color: achieved[index]
+                                    color: achieved[index]()
                                         ? Colors.green
                                         : Colors.red,
                                     fontSize: 30,
@@ -59,11 +60,11 @@ class Achievements extends StatelessWidget {
                             title: Text(achievementTitles[index],
                                 style: const TextStyle(fontSize: 20)),
                             trailing: Icon(
-                                achieved[index]
+                                achieved[index]()
                                     ? Icons.check
                                     : Icons.cancel_outlined,
                                 size: 30,
-                                color: achieved[index]
+                                color: achieved[index]()
                                     ? Colors.green
                                     : Colors.red),
                             onTap: () {

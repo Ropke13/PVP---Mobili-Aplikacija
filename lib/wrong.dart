@@ -289,9 +289,9 @@ class TestWrong extends StatelessWidget {
                                   rodyti: rodyti)));
                     }
                     countQ();
-                    if (countcheck() >= 3) {
-                      int correct = corrrectcheck();
-                      int total = countcheck();
+                    if (getCountQuestions() >= 3) {
+                      int correct = getCorrect();
+                      int total = getCountQuestions();
                       print("$correct out of $total");
                       resetCounts();
                       Navigator.push(context,
