@@ -84,10 +84,6 @@ class MainState extends State<MainMenu> {
               ),
               ListTile(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
-                tileColor: const Color.fromARGB(255, 21, 21, 21),
-              ),
-              ListTile(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
                 tileColor: const Color.fromARGB(255, 58, 56, 56),
                 textColor: Colors.red,
                 leading: const Icon(Icons.exit_to_app, color: Colors.red, size: 40),
