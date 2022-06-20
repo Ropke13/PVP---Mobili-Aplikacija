@@ -4,6 +4,7 @@ import 'package:matematika/main.dart';
 import 'package:matematika/test_question.dart';
 import 'package:matematika/text_question.dart';
 import 'package:matematika/utilities.dart';
+import 'package:matematika/testEnd.dart';
 
 class LearnWrong extends StatelessWidget {
   final String theme;
@@ -124,8 +125,7 @@ class LearnWrong extends StatelessWidget {
                                   regex: question?['regex'],
                                   isOnlyNumberAnswer:
                                       question?['is_numbers_only'],
-                                  explain: question?['explain'],
-                                  rodyti: rodyti)));
+                                  explain: question?['explain'])));
                     } else {
                       List<String> answersList =
                           List<String>.from(question?['answers']);
@@ -137,8 +137,7 @@ class LearnWrong extends StatelessWidget {
                                   question: question?['uzdavinys'],
                                   answers: answersList,
                                   correctAnswer: question?['correct_answer'],
-                                  explain: question?['explain'],
-                                  rodyti: rodyti)));
+                                  explain: question?['explain'])));
                     }
                   },
                   child: Column(children: <Widget>[
@@ -178,7 +177,6 @@ class TestWrong extends StatelessWidget {
   final String answer;
   final String wrongAnswer;
   final String explain;
-  final bool rodyti;
   final double count;
 
   const TestWrong(
@@ -188,8 +186,7 @@ class TestWrong extends StatelessWidget {
       required this.question,
       required this.answer,
       required this.wrongAnswer,
-      required this.explain,
-      required this.rodyti})
+      required this.explain,})
       : super(key: key);
 
   @override
@@ -198,10 +195,6 @@ class TestWrong extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
           title: Text(theme,
               style: const TextStyle(
                 color: Colors.white,
@@ -213,7 +206,12 @@ class TestWrong extends StatelessWidget {
         ),
         body: SafeArea(
           child: Column(children: <Widget>[
-            const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
+            LinearProgressIndicator(
+            value: count,
+            backgroundColor: const Color.fromARGB(255, 21, 21, 21),
+            color: Colors.green,
+            minHeight: 5,
+          ),
             Expanded(
                 flex: 5,
                 child: Align(
@@ -271,8 +269,7 @@ class TestWrong extends StatelessWidget {
                                   regex: question?['regex'],
                                   isOnlyNumberAnswer:
                                       question?['is_numbers_only'],
-                                  explain: question?['explain'],
-                                  rodyti: rodyti)));
+                                  explain: question?['explain'])));
                     } else {
                       List<String> answersList =
                           List<String>.from(question?['answers']);
@@ -285,17 +282,14 @@ class TestWrong extends StatelessWidget {
                                   question: question?['uzdavinys'],
                                   answers: answersList,
                                   correctAnswer: question?['correct_answer'],
-                                  explain: question?['explain'],
-                                  rodyti: rodyti)));
+                                  explain: question?['explain'])));
                     }
                     countQ();
                     if (getCountQuestions() >= 3) {
                       int correct = getCorrect();
-                      int total = getCountQuestions();
-                      print("$correct out of $total");
-                      resetCounts();
+                      double total = getCountQuestions();
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MainMenu()));
+                          MaterialPageRoute(builder: (context) => TestEnd(theme: theme, correct: correct, total: total)));
                     }
                   },
                   child: Column(children: <Widget>[

@@ -4,6 +4,7 @@ import 'package:matematika/main.dart';
 import 'package:matematika/test_question.dart';
 import 'package:matematika/text_question.dart';
 import 'package:matematika/utilities.dart';
+import 'package:matematika/testEnd.dart';
 
 class LearnCorrect extends StatelessWidget {
   final String theme;
@@ -11,7 +12,7 @@ class LearnCorrect extends StatelessWidget {
   final String answer;
   final String explain;
   final bool rodyti;
-
+  
   const LearnCorrect(
       {Key? key,
       required this.theme,
@@ -122,8 +123,7 @@ class LearnCorrect extends StatelessWidget {
                                   regex: question?['regex'],
                                   isOnlyNumberAnswer:
                                       question?['is_numbers_only'],
-                                  explain: question?['explain'],
-                                  rodyti: rodyti)));
+                                  explain: question?['explain'])));
                     } else {
                       List<String> answersList =
                           List<String>.from(question?['answers']);
@@ -135,8 +135,7 @@ class LearnCorrect extends StatelessWidget {
                                   question: question?['uzdavinys'],
                                   answers: answersList,
                                   correctAnswer: question?['correct_answer'],
-                                  explain: question?['explain'],
-                                  rodyti: rodyti)));
+                                  explain: question?['explain'])));
                     }
                   },
                   child: Column(children: <Widget>[
@@ -175,7 +174,6 @@ class TestCorrect extends StatelessWidget {
   final String question;
   final String answer;
   final String explain;
-  final bool rodyti;
   final double count;
 
   const TestCorrect(
@@ -184,8 +182,7 @@ class TestCorrect extends StatelessWidget {
       required this.theme,
       required this.question,
       required this.answer,
-      required this.explain,
-      required this.rodyti})
+      required this.explain})
       : super(key: key);
 
   @override
@@ -194,10 +191,6 @@ class TestCorrect extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
           title: Text(theme,
               style: const TextStyle(
                 color: Colors.white,
@@ -209,7 +202,12 @@ class TestCorrect extends StatelessWidget {
         ),
         body: SafeArea(
           child: Column(children: <Widget>[
-            const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
+            LinearProgressIndicator(
+            value: count,
+            backgroundColor: const Color.fromARGB(255, 21, 21, 21),
+            color: Colors.green,
+            minHeight: 5,
+          ),
             Expanded(
                 flex: 5,
                 child: Align(
@@ -267,8 +265,7 @@ class TestCorrect extends StatelessWidget {
                                   regex: question?['regex'],
                                   isOnlyNumberAnswer:
                                       question?['is_numbers_only'],
-                                  explain: question?['explain'],
-                                  rodyti: rodyti)));
+                                  explain: question?['explain'])));
                     } else {
                       List<String> answersList =
                           List<String>.from(question?['answers']);
@@ -281,18 +278,15 @@ class TestCorrect extends StatelessWidget {
                                   question: question?['uzdavinys'],
                                   answers: answersList,
                                   correctAnswer: question?['correct_answer'],
-                                  explain: question?['explain'],
-                                  rodyti: rodyti)));
+                                  explain: question?['explain'])));
                     }
                     countQ();
                     addCorrect();
                     if (getCountQuestions() >= 3) {
                       int correct = getCorrect();
-                      int total = getCountQuestions();
-                      print("$correct out of $total");
-                      resetCounts();
+                      double total = getCountQuestions();
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MainMenu()));
+                          MaterialPageRoute(builder: (context) => TestEnd(theme: theme, correct: correct, total: total)));
                     }
                   },
                   child: Column(children: <Widget>[

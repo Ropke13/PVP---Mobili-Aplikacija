@@ -12,7 +12,6 @@ class TextQuestion extends StatefulWidget {
   final String regex;
   final String explain;
   final bool isOnlyNumberAnswer;
-  final bool rodyti;
 
   const TextQuestion(
       {Key? key,
@@ -21,8 +20,7 @@ class TextQuestion extends StatefulWidget {
       required this.answer,
       required this.regex,
       required this.explain,
-      required this.isOnlyNumberAnswer,
-      required this.rodyti})
+      required this.isOnlyNumberAnswer})
       : super(key: key);
 
   @override
@@ -51,7 +49,7 @@ class TextQuestionState extends State<TextQuestion> {
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () =>
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => SubjectList(rodyti: widget.rodyti),
+              builder: (context) => SubjectList(),
             )),
           ),
           title: Text(widget.theme,
@@ -109,7 +107,7 @@ class TextQuestionState extends State<TextQuestion> {
                                         question: widget.question,
                                         answer: widget.answer,
                                         explain: widget.explain,
-                                        rodyti: widget.rodyti)));
+                                        rodyti: getRodyti())));
                           } else {
                             Navigator.push(
                                 context,
@@ -120,7 +118,7 @@ class TextQuestionState extends State<TextQuestion> {
                                         answer: widget.answer,
                                         wrongAnswer: userAnswer,
                                         explain: widget.explain,
-                                        rodyti: widget.rodyti)));
+                                        rodyti: getRodyti())));
                           }
                         },
                       )))
@@ -140,7 +138,6 @@ class TextQuestionTest extends StatefulWidget {
   final String regex;
   final String explain;
   final bool isOnlyNumberAnswer;
-  final bool rodyti;
 
   const TextQuestionTest(
       {Key? key,
@@ -150,8 +147,7 @@ class TextQuestionTest extends StatefulWidget {
       required this.answer,
       required this.regex,
       required this.explain,
-      required this.isOnlyNumberAnswer,
-      required this.rodyti})
+      required this.isOnlyNumberAnswer})
       : super(key: key);
 
   @override
@@ -176,13 +172,6 @@ class TextQuestionTestState extends State<TextQuestionTest> {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () =>
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => TestList(rodyti: widget.rodyti),
-            )),
-          ),
           title: Text(widget.theme,
               style: const TextStyle(
                 color: Colors.white,
@@ -242,8 +231,7 @@ class TextQuestionTestState extends State<TextQuestionTest> {
                                         theme: widget.theme,
                                         question: widget.question,
                                         answer: widget.answer,
-                                        explain: widget.explain,
-                                        rodyti: widget.rodyti)));
+                                        explain: widget.explain)));
                           } else {
                             Navigator.push(
                                 context,
@@ -254,8 +242,7 @@ class TextQuestionTestState extends State<TextQuestionTest> {
                                         question: widget.question,
                                         answer: widget.answer,
                                         wrongAnswer: userAnswer,
-                                        explain: widget.explain,
-                                        rodyti: widget.rodyti)));
+                                        explain: widget.explain)));
                           }
                         },
                       )))

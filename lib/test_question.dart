@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:matematika/correct.dart';
 import 'package:matematika/list.dart';
+import 'package:matematika/utilities.dart';
 import 'package:matematika/wrong.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 
@@ -13,7 +14,6 @@ class LearnQuestion extends StatelessWidget {
   final List<String> answers;
   final int correctAnswer;
   final String explain;
-  final bool rodyti;
 
   const LearnQuestion(
       {Key? key,
@@ -21,8 +21,7 @@ class LearnQuestion extends StatelessWidget {
       required this.question,
       required this.answers,
       required this.correctAnswer,
-      required this.explain,
-      required this.rodyti})
+      required this.explain})
       : super(key: key);
 
   @override
@@ -35,7 +34,7 @@ class LearnQuestion extends StatelessWidget {
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () =>
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => SubjectList(rodyti: rodyti),
+              builder: (context) => SubjectList(),
             )),
           ),
           title: Text(theme,
@@ -95,7 +94,7 @@ class LearnQuestion extends StatelessWidget {
                                     question: question,
                                     answer: answers[int.parse(index)],
                                     explain: explain,
-                                    rodyti: rodyti)));
+                                    rodyti: getRodyti(),)));
                       } else {
                         Navigator.push(
                             context,
@@ -106,7 +105,7 @@ class LearnQuestion extends StatelessWidget {
                                       answer: answers[correctAnswer],
                                       wrongAnswer: answers[int.parse(index)],
                                       explain: explain,
-                                      rodyti: rodyti,
+                                      rodyti: getRodyti(),
                                     )));
                       }
                     })
@@ -127,7 +126,6 @@ class TestQuestion extends StatelessWidget {
   final int correctAnswer;
   final double count;
   final String explain;
-  final bool rodyti;
 
   const TestQuestion(
       {Key? key,
@@ -136,8 +134,7 @@ class TestQuestion extends StatelessWidget {
       required this.answers,
       required this.correctAnswer,
       required this.count,
-      required this.explain,
-      required this.rodyti})
+      required this.explain})
       : super(key: key);
 
   @override
@@ -146,13 +143,6 @@ class TestQuestion extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () =>
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => TestList(rodyti: rodyti),
-            )),
-          ),
           title: Text(theme,
               style: const TextStyle(
                 color: Colors.white,
@@ -215,8 +205,7 @@ class TestQuestion extends StatelessWidget {
                                     question: question,
                                     answer: answers[int.parse(index)],
                                     count: count,
-                                    explain: explain,
-                                    rodyti: rodyti)));
+                                    explain: explain)));
                       } else {
                         Navigator.push(
                             context,
@@ -227,8 +216,7 @@ class TestQuestion extends StatelessWidget {
                                     answer: answers[correctAnswer],
                                     count: count,
                                     wrongAnswer: answers[int.parse(index)],
-                                    explain: explain,
-                                    rodyti: rodyti)));
+                                    explain: explain)));
                       }
                     })
               ]),

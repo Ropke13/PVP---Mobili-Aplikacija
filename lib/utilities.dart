@@ -4,9 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 User? user = null;
 
+bool rodyti = false;
 int correct = 0;
 int correctTotal = 0;
-int countQuestions = 0;
+double countQuestions = 0;
 List<int> visitedThemes = [];
 
 User? getConnected() {
@@ -17,7 +18,7 @@ int getCorrect() {
   return correct;
 }
 
-int getCountQuestions() {
+double getCountQuestions() {
   return countQuestions;
 }
 
@@ -36,6 +37,13 @@ int visitedThemeCount() {
   return visitedThemes.length;
 }
 
+void setRodyti(bool r) {
+  rodyti = r;
+}
+
+bool getRodyti() {
+  return rodyti;
+}
 void addCorrect() {
   correct++;
   correctTotal++;

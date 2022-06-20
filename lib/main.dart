@@ -24,6 +24,7 @@ void main() async {
 
 class MainMenu extends StatefulWidget {
   MainState createState() => MainState();
+
 }
 
 class MainState extends State<MainMenu> {
@@ -69,7 +70,7 @@ class MainState extends State<MainMenu> {
                       style: TextStyle(fontSize: 20)),
                   trailing: Theme(
                       child: Checkbox(
-                        value: isChecked ?? false,
+                        value: getRodyti(),
                         activeColor: Colors.green,
                         checkColor: Colors.white,
                         focusColor: Colors.white,
@@ -78,14 +79,10 @@ class MainState extends State<MainMenu> {
                           setState(() {
                             isChecked = newValue!;
                           });
+                          setRodyti(isChecked!);
                         },
                       ),
                       data: ThemeData(unselectedWidgetColor: Colors.white)),
-                ),
-                ListTile(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7.0)),
-                  tileColor: const Color.fromARGB(255, 21, 21, 21),
                 ),
                 ListTile(
                   shape: RoundedRectangleBorder(
@@ -161,7 +158,7 @@ class MainState extends State<MainMenu> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      SubjectList(rodyti: isChecked ?? false)));
+                                      SubjectList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(
@@ -197,7 +194,7 @@ class MainState extends State<MainMenu> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      TestList(rodyti: isChecked ?? false)));
+                                      TestList()));
                         },
                         child: Column(children: <Widget>[
                           SizedBox(

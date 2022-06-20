@@ -17,32 +17,15 @@ var iconList = ['1', '=', 'lg', '^', 'Ž', '9'];
 var colorList = [
   Colors.green,
   Colors.green,
-  Colors.green,
-  Colors.green,
-  Colors.green,
-  Colors.green
-];
-var completed = [
-  Icons.check,
-  Icons.cancel_outlined,
-  Icons.check,
-  Icons.check,
-  Icons.check,
-  Icons.check
-];
-var completedColors = [
-  Colors.green,
+  Colors.yellow,
+  Colors.yellow,
   Colors.red,
-  Colors.green,
-  Colors.green,
-  Colors.green,
-  Colors.green
+  Colors.red
 ];
 
 class TestList extends StatelessWidget {
-  final bool rodyti;
 
-  const TestList({Key? key, required this.rodyti}) : super(key: key);
+  const TestList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +69,6 @@ class TestList extends StatelessWidget {
                         ),
                         title: Text(themeList[index],
                             style: const TextStyle(fontSize: 20)),
-                        trailing: Icon(completed[index],
-                            size: 30, color: completedColors[index]),
                         onTap: () async {
                             addTheme(index);
                           final question =
@@ -105,8 +86,7 @@ class TestList extends StatelessWidget {
                                         regex: question?['regex'],
                                         isOnlyNumberAnswer:
                                             question?['is_numbers_only'],
-                                        explain: question?['explain'],
-                                        rodyti: false)));
+                                        explain: question?['explain'])));
                           } else {
                             List<String> answersList =
                                 List<String>.from(question?['answers']);
@@ -120,8 +100,7 @@ class TestList extends StatelessWidget {
                                         answers: answersList,
                                         correctAnswer:
                                             question?['correct_answer'],
-                                        explain: question?['explain'],
-                                        rodyti: false)));
+                                        explain: question?['explain'])));
                           }
                         },
                       ),
@@ -137,9 +116,8 @@ class TestList extends StatelessWidget {
 }
 
 class SubjectList extends StatelessWidget {
-  final bool rodyti;
 
-  const SubjectList({Key? key, required this.rodyti}) : super(key: key);
+  const SubjectList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -198,8 +176,7 @@ class SubjectList extends StatelessWidget {
                                         regex: question?['regex'],
                                         isOnlyNumberAnswer:
                                             question?['is_numbers_only'],
-                                        explain: question?['explain'],
-                                        rodyti: rodyti)));
+                                        explain: question?['explain'])));
                           } else {
                             List<String> answersList =
                                 List<String>.from(question?['answers']);
@@ -212,8 +189,7 @@ class SubjectList extends StatelessWidget {
                                         answers: answersList,
                                         correctAnswer:
                                             question?['correct_answer'],
-                                        explain: question?['explain'],
-                                        rodyti: rodyti)));
+                                        explain: question?['explain'])));
                           }
                         },
                       ),
