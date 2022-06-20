@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:matematika/list.dart';
 import 'package:flutter_tex/flutter_tex.dart';
-
+import 'package:matematika/main.dart';
 import 'package:matematika/test_question.dart';
 import 'package:matematika/text_question.dart';
 import 'package:matematika/utilities.dart';
@@ -14,15 +13,15 @@ class LearnWrong extends StatelessWidget {
   final String explain;
   final bool rodyti;
 
-  const LearnWrong({
-    Key? key,
-    required this.theme,
-    required this.question,
-    required this.answer,
-    required this.wrongAnswer,
-    required this.explain,
-    required this.rodyti
-  }) : super(key: key);
+  const LearnWrong(
+      {Key? key,
+      required this.theme,
+      required this.question,
+      required this.answer,
+      required this.wrongAnswer,
+      required this.explain,
+      required this.rodyti})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,8 @@ class LearnWrong extends StatelessWidget {
                                   TeXViewDocument(question,
                                       style: TeXViewStyle(
                                         contentColor: Colors.white,
-                                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                                        fontStyle:
+                                            TeXViewFontStyle(fontSize: 20),
                                         textAlign: TeXViewTextAlign.center,
                                         padding: const TeXViewPadding.only(
                                           sizeUnit: TeXViewSizeUnit.pt,
@@ -69,7 +69,8 @@ class LearnWrong extends StatelessWidget {
                                   TeXViewDocument(wrongAnswer,
                                       style: TeXViewStyle(
                                         contentColor: Colors.red,
-                                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                                        fontStyle:
+                                            TeXViewFontStyle(fontSize: 20),
                                         textAlign: TeXViewTextAlign.center,
                                       )),
                                 ]),
@@ -83,66 +84,62 @@ class LearnWrong extends StatelessWidget {
                             TeXViewDocument("Neteisingai",
                                 style: TeXViewStyle(
                                   contentColor: Colors.red,
-                                  fontStyle: TeXViewFontStyle(fontSize: 50, fontWeight: TeXViewFontWeight.bold),
+                                  fontStyle: TeXViewFontStyle(
+                                      fontSize: 50,
+                                      fontWeight: TeXViewFontWeight.bold),
                                   textAlign: TeXViewTextAlign.center,
                                 )),
-                            if (rodyti == true)...[
-                            TeXViewDocument(explain,
-                                style: TeXViewStyle(
-                                  contentColor: Colors.white,
-                                  fontStyle: TeXViewFontStyle(fontSize: 15),
-                                  textAlign: TeXViewTextAlign.center,
-                                  padding: const TeXViewPadding.only(
-                                    sizeUnit: TeXViewSizeUnit.pt,
-                                    left: 30,
-                                    right: 30,
-                                    top: 10,
-                                    bottom: 10,
-                                  ),
-                                )),
+                            if (rodyti == true) ...[
+                              TeXViewDocument(explain,
+                                  style: TeXViewStyle(
+                                    contentColor: Colors.white,
+                                    fontStyle: TeXViewFontStyle(fontSize: 15),
+                                    textAlign: TeXViewTextAlign.center,
+                                    padding: const TeXViewPadding.only(
+                                      sizeUnit: TeXViewSizeUnit.pt,
+                                      left: 30,
+                                      right: 30,
+                                      top: 10,
+                                      bottom: 10,
+                                    ),
+                                  )),
                             ]
                           ],
                         ),
-                        renderingEngine: const TeXViewRenderingEngine.katex()))),
+                        renderingEngine:
+                            const TeXViewRenderingEngine.katex()))),
             Expanded(
               child: InkWell(
                   onTap: () async {
                     final question = await generateQuestion(theme);
-                          bool checker = question?['is_text'];
-                          if (checker)
-                          {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => TextQuestion(
-                                          theme: theme,
-                                          question: question?['uzdavinys'],
-                                          answer: question?['correct_answer'],
-                                          regex: question?['regex'],
-                                          isOnlyNumberAnswer: question?['is_numbers_only'],
-                                          explain: question?['explain'],
-                                          rodyti: rodyti
-                                  )
-                                )
-                              );
-                          }
-                          else
-                          {
-                            List<String> answersList = List<String>.from(question?['answers']);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LearnQuestion(
-                                          theme: theme,
-                                          question: question?['uzdavinys'],
-                                          answers: answersList,
-                                          correctAnswer: question?['correct_answer'],
-                                          explain: question?['explain'],
-                                          rodyti: rodyti
-                                  )
-                                )
-                              );
-                          }      
+                    bool checker = question?['is_text'];
+                    if (checker) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TextQuestion(
+                                  theme: theme,
+                                  question: question?['uzdavinys'],
+                                  answer: question?['correct_answer'],
+                                  regex: question?['regex'],
+                                  isOnlyNumberAnswer:
+                                      question?['is_numbers_only'],
+                                  explain: question?['explain'],
+                                  rodyti: rodyti)));
+                    } else {
+                      List<String> answersList =
+                          List<String>.from(question?['answers']);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LearnQuestion(
+                                  theme: theme,
+                                  question: question?['uzdavinys'],
+                                  answers: answersList,
+                                  correctAnswer: question?['correct_answer'],
+                                  explain: question?['explain'],
+                                  rodyti: rodyti)));
+                    }
                   },
                   child: Column(children: <Widget>[
                     SizedBox(
@@ -151,16 +148,19 @@ class LearnWrong extends StatelessWidget {
                       child: Card(
                         color: const Color.fromARGB(255, 21, 21, 21),
                         elevation: 2.0,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: const <Widget>[
-                          Text("Toliau",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                              ))
-                        ]),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text("Toliau",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
+                                  ))
+                            ]),
                       ),
                     )
                   ])),
@@ -179,18 +179,18 @@ class TestWrong extends StatelessWidget {
   final String wrongAnswer;
   final String explain;
   final bool rodyti;
-  double count;
+  final double count;
 
-  TestWrong({
-    Key? key,
-    required this.theme,
-    required this.count,
-    required this.question,
-    required this.answer,
-    required this.wrongAnswer,
-    required this.explain,
-    required this.rodyti
-  }) : super(key: key);
+  const TestWrong(
+      {Key? key,
+      required this.count,
+      required this.theme,
+      required this.question,
+      required this.answer,
+      required this.wrongAnswer,
+      required this.explain,
+      required this.rodyti})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -213,12 +213,7 @@ class TestWrong extends StatelessWidget {
         ),
         body: SafeArea(
           child: Column(children: <Widget>[
-            LinearProgressIndicator(
-              value: count,
-              backgroundColor: const Color.fromARGB(255, 21, 21, 21),
-              color: Colors.green,
-              minHeight: 5,
-            ),
+            const Divider(color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
             Expanded(
                 flex: 5,
                 child: Align(
@@ -231,7 +226,8 @@ class TestWrong extends StatelessWidget {
                                   TeXViewDocument(question,
                                       style: TeXViewStyle(
                                         contentColor: Colors.white,
-                                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                                        fontStyle:
+                                            TeXViewFontStyle(fontSize: 20),
                                         textAlign: TeXViewTextAlign.center,
                                         padding: const TeXViewPadding.only(
                                           sizeUnit: TeXViewSizeUnit.pt,
@@ -241,8 +237,9 @@ class TestWrong extends StatelessWidget {
                                       )),
                                   TeXViewDocument(wrongAnswer,
                                       style: TeXViewStyle(
-                                        contentColor: Colors.red,
-                                        fontStyle: TeXViewFontStyle(fontSize: 20),
+                                        contentColor: Colors.white,
+                                        fontStyle:
+                                            TeXViewFontStyle(fontSize: 20),
                                         textAlign: TeXViewTextAlign.center,
                                       )),
                                 ]),
@@ -253,34 +250,53 @@ class TestWrong extends StatelessWidget {
                                     right: 30,
                                   ),
                                 )),
-                            TeXViewDocument("Neteisingai",
-                                style: TeXViewStyle(
-                                  contentColor: Colors.red,
-                                  fontStyle: TeXViewFontStyle(fontSize: 50, fontWeight: TeXViewFontWeight.bold),
-                                  textAlign: TeXViewTextAlign.center,
-                                )),
-                            if (rodyti == true)...[
-                            TeXViewDocument(explain,
-                                style: TeXViewStyle(
-                                  contentColor: Colors.white,
-                                  fontStyle: TeXViewFontStyle(fontSize: 15),
-                                  textAlign: TeXViewTextAlign.center,
-                                  padding: const TeXViewPadding.only(
-                                    sizeUnit: TeXViewSizeUnit.pt,
-                                    left: 30,
-                                    right: 30,
-                                    top: 10,
-                                    bottom: 10,
-                                  ),
-                                )),
-                            ]
                           ],
                         ),
-                        renderingEngine: const TeXViewRenderingEngine.katex()))),
+                        renderingEngine:
+                            const TeXViewRenderingEngine.katex()))),
             Expanded(
               child: InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SubjectList(rodyti: rodyti)));
+                  onTap: () async {
+                    final question = await generateQuestion(theme);
+                    bool checker = question?['is_text'];
+                    if (checker) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TextQuestionTest(
+                                  count: 0,
+                                  theme: theme,
+                                  question: question?['uzdavinys'],
+                                  answer: question?['correct_answer'],
+                                  regex: question?['regex'],
+                                  isOnlyNumberAnswer:
+                                      question?['is_numbers_only'],
+                                  explain: question?['explain'],
+                                  rodyti: rodyti)));
+                    } else {
+                      List<String> answersList =
+                          List<String>.from(question?['answers']);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TestQuestion(
+                                  count: 0,
+                                  theme: theme,
+                                  question: question?['uzdavinys'],
+                                  answers: answersList,
+                                  correctAnswer: question?['correct_answer'],
+                                  explain: question?['explain'],
+                                  rodyti: rodyti)));
+                    }
+                    countQ();
+                    if (countcheck() >= 3) {
+                      int correct = corrrectcheck();
+                      int total = countcheck();
+                      print("$correct out of $total");
+                      resetCounts();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MainMenu()));
+                    }
                   },
                   child: Column(children: <Widget>[
                     SizedBox(
@@ -289,16 +305,19 @@ class TestWrong extends StatelessWidget {
                       child: Card(
                         color: const Color.fromARGB(255, 21, 21, 21),
                         elevation: 2.0,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: const <Widget>[
-                          Text("Toliau",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                              ))
-                        ]),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const <Widget>[
+                              Text("Toliau",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
+                                  ))
+                            ]),
                       ),
                     )
                   ])),
