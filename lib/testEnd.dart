@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matematika/list.dart';
 import 'package:matematika/utilities.dart';
+
 class TestEnd extends StatelessWidget {
   final String theme;
   final int correct;
@@ -74,9 +75,8 @@ class TestEnd extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8.0)),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const <Widget>[
-                              Text("Atgal",
-                                  textAlign: TextAlign.center,
+                            children: [
+                              const Text("Testo rezultatai:",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
