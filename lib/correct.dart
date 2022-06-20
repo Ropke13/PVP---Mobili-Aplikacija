@@ -260,7 +260,7 @@ class TestCorrect extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => TextQuestionTest(
-                                  count: 0,
+                                  count: count + 0.34,
                                   theme: theme,
                                   question: question?['uzdavinys'],
                                   answer: question?['correct_answer'],
@@ -276,7 +276,7 @@ class TestCorrect extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => TestQuestion(
-                                  count: 0,
+                                  count: count + 0.34,
                                   theme: theme,
                                   question: question?['uzdavinys'],
                                   answers: answersList,

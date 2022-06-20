@@ -17,7 +17,7 @@ void main() async {
       messagingSenderId: "56331451248",
       projectId: "matematika-21de2",
     ),
-    name: "DevApp",
+    //name: "DevApp",
   );
   runApp(MaterialApp(home: MainMenu()));
 }
