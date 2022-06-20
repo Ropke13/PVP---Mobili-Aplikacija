@@ -214,7 +214,7 @@ class TestQuestion extends StatelessWidget {
                                     theme: theme,
                                     question: question,
                                     answer: answers[int.parse(index)],
-                                    count: count + 0.1,
+                                    count: count,
                                     explain: explain,
                                     rodyti: rodyti)));
                       } else {
@@ -225,7 +225,7 @@ class TestQuestion extends StatelessWidget {
                                     theme: theme,
                                     question: question,
                                     answer: answers[correctAnswer],
-                                    count: count + 0.1,
+                                    count: count,
                                     wrongAnswer: answers[int.parse(index)],
                                     explain: explain,
                                     rodyti: rodyti)));

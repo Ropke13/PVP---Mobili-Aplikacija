@@ -195,8 +195,12 @@ class TextQuestionTestState extends State<TextQuestionTest> {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              const Divider(
-                  color: Color.fromARGB(255, 21, 21, 21), thickness: 2),
+              LinearProgressIndicator(
+            value: widget.count,
+            backgroundColor: const Color.fromARGB(255, 21, 21, 21),
+            color: Colors.green,
+            minHeight: 5,
+          ),
               Expanded(
                   child: Align(
                 alignment: Alignment.center,
@@ -234,7 +238,7 @@ class TextQuestionTestState extends State<TextQuestionTest> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => TestCorrect(
-                                        count: 0,
+                                        count: widget.count,
                                         theme: widget.theme,
                                         question: widget.question,
                                         answer: widget.answer,
@@ -245,7 +249,7 @@ class TextQuestionTestState extends State<TextQuestionTest> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => TestWrong(
-                                        count: 0,
+                                        count: widget.count,
                                         theme: widget.theme,
                                         question: widget.question,
                                         answer: widget.answer,
