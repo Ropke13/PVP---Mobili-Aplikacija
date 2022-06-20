@@ -150,7 +150,7 @@ class TestQuestion extends StatelessWidget {
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () =>
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => SubjectList(rodyti: rodyti),
+              builder: (context) => TestList(rodyti: rodyti),
             )),
           ),
           title: Text(theme,

@@ -180,7 +180,7 @@ class TextQuestionTestState extends State<TextQuestionTest> {
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
             onPressed: () =>
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => SubjectList(rodyti: widget.rodyti),
+              builder: (context) => TestList(rodyti: widget.rodyti),
             )),
           ),
           title: Text(widget.theme,

@@ -46,6 +46,7 @@ class TestList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    resetCounts();
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.black,
