@@ -89,6 +89,7 @@ class TestList extends StatelessWidget {
                         trailing: Icon(completed[index],
                             size: 30, color: completedColors[index]),
                         onTap: () async {
+                            addTheme(index);
                           final question =
                               await generateQuestion(themeList[index]);
                           bool checker = question?['is_text'];
@@ -182,6 +183,7 @@ class SubjectList extends StatelessWidget {
                         title: Text(themeList[index],
                             style: const TextStyle(fontSize: 20)),
                         onTap: () async {
+                          addTheme(index);
                           final question =
                               await generateQuestion(themeList[index]);
                           bool checker = question?['is_text'];

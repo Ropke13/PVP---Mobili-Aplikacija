@@ -7,7 +7,7 @@ User? user = null;
 int correct = 0;
 int correctTotal = 0;
 int countQuestions = 0;
-bool achieved = false;
+List<int> visitedThemes = [];
 
 User? getConnected() {
   return user;
@@ -21,17 +21,24 @@ int getCountQuestions() {
   return countQuestions;
 }
 
-bool getAchieved() {
-  return achieved;
+int getCorrectTotal() {
+  return correctTotal;
+}
+
+void addTheme(int index) {
+  if (!visitedThemes.contains(index)) {
+    print("Added " + index.toString());
+    visitedThemes.add(index);
+  }
+}
+
+int visitedThemeCount() {
+  return visitedThemes.length;
 }
 
 void addCorrect() {
   correct++;
   correctTotal++;
-
-  if (correctTotal >= 10) {
-    achieved = true;
-  }
 }
 
 void countQ() {
