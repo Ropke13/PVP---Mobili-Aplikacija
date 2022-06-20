@@ -1,31 +1,50 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 User? user = null;
 
-User? getConnected(){
-  return user;  
+int correct = 0;
+int countQuestions = 0;
+
+User? getConnected() {
+  return user;
 }
 
-void setConnected(User u){
-    user = u;
+int corrrectcheck() {
+  return correct;
 }
 
-void setNull(Null n){
+int countcheck() {
+  return countQuestions;
+}
+
+void addcorrect() {
+  correct++;
+}
+
+void countQ() {
+  countQuestions++;
+}
+
+void resetCounts() {
+  correct = 0;
+  countQuestions = 0;
+}
+
+void setConnected(User u) {
+  user = u;
+}
+
+void setNull(Null n) {
   user = n;
 }
 
-String? getName()
-{
-  if (user != null)
-  {
+String? getName() {
+  if (user != null) {
     return user?.email;
-  }
-  else
-  {
-      return "";
+  } else {
+    return "";
   }
 }
 
@@ -41,13 +60,12 @@ bool regexCheck(String regex, String input) {
 
 Future<Map<String, dynamic>?> generateQuestion(String theme) async {
   QuerySnapshot querySnapshot =
-      await FirebaseFirestore.instance
-          .collection(theme)
-          .get();
+      await FirebaseFirestore.instance.collection(theme).get();
 
-    int index = generateRandom(0, querySnapshot.size);
+  int index = generateRandom(0, querySnapshot.size);
 
-    Map<String, dynamic>? data = querySnapshot.docs[index].data() as Map<String, dynamic>?;
+  Map<String, dynamic>? data =
+      querySnapshot.docs[index].data() as Map<String, dynamic>?;
 
-    return data;
+  return data;
 }

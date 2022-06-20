@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:matematika/main.dart';
 import 'package:matematika/test_question.dart';
@@ -41,23 +40,21 @@ var completedColors = [
 ];
 
 class TestList extends StatelessWidget {
-
   final bool rodyti;
 
-  const TestList({
-    Key? key,
-    required this.rodyti
-    }) : super(key: key);
+  const TestList({Key? key, required this.rodyti}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    resetCounts();
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => MainMenu())),
           ),
           title: const Text("Testai",
               style: TextStyle(
@@ -99,31 +96,31 @@ class TestList extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => TextQuestion(
-                                          theme: themeList[index],
-                                          question: question?['uzdavinys'],
-                                          answer: question?['correct_answer'],
-                                          regex: question?['regex'],
-                                          isOnlyNumberAnswer:
-                                              question?['is_numbers_only'],
-                                          explain: question?['explain'],
-                                          rodyti: rodyti
-                                        )));
+                                    builder: (context) => TextQuestionTest(
+                                        count: 0,
+                                        theme: themeList[index],
+                                        question: question?['uzdavinys'],
+                                        answer: question?['correct_answer'],
+                                        regex: question?['regex'],
+                                        isOnlyNumberAnswer:
+                                            question?['is_numbers_only'],
+                                        explain: question?['explain'],
+                                        rodyti: false)));
                           } else {
                             List<String> answersList =
                                 List<String>.from(question?['answers']);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LearnQuestion(
-                                          theme: themeList[index],
-                                          question: question?['uzdavinys'],
-                                          answers: answersList,
-                                          correctAnswer:
-                                              question?['correct_answer'],
-                                          explain: question?['explain'],
-                                          rodyti: rodyti
-                                        )));
+                                    builder: (context) => TestQuestion(
+                                        count: 0,
+                                        theme: themeList[index],
+                                        question: question?['uzdavinys'],
+                                        answers: answersList,
+                                        correctAnswer:
+                                            question?['correct_answer'],
+                                        explain: question?['explain'],
+                                        rodyti: false)));
                           }
                         },
                       ),
@@ -141,10 +138,7 @@ class TestList extends StatelessWidget {
 class SubjectList extends StatelessWidget {
   final bool rodyti;
 
-  const SubjectList({
-    Key? key,
-    required this.rodyti
-    }) : super(key: key);
+  const SubjectList({Key? key, required this.rodyti}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +148,8 @@ class SubjectList extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 35),
-            onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainMenu())),
+            onPressed: () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => MainMenu())),
           ),
           title: const Text("Temos",
               style: TextStyle(
@@ -195,15 +190,14 @@ class SubjectList extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => TextQuestion(
-                                          theme: themeList[index],
-                                          question: question?['uzdavinys'],
-                                          answer: question?['correct_answer'],
-                                          regex: question?['regex'],
-                                          isOnlyNumberAnswer:
-                                              question?['is_numbers_only'],
-                                          explain: question?['explain'],
-                                          rodyti: rodyti
-                                        )));
+                                        theme: themeList[index],
+                                        question: question?['uzdavinys'],
+                                        answer: question?['correct_answer'],
+                                        regex: question?['regex'],
+                                        isOnlyNumberAnswer:
+                                            question?['is_numbers_only'],
+                                        explain: question?['explain'],
+                                        rodyti: rodyti)));
                           } else {
                             List<String> answersList =
                                 List<String>.from(question?['answers']);
@@ -211,14 +205,13 @@ class SubjectList extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => LearnQuestion(
-                                          theme: themeList[index],
-                                          question: question?['uzdavinys'],
-                                          answers: answersList,
-                                          correctAnswer:
-                                              question?['correct_answer'],
-                                          explain: question?['explain'],
-                                          rodyti: rodyti
-                                        )));
+                                        theme: themeList[index],
+                                        question: question?['uzdavinys'],
+                                        answers: answersList,
+                                        correctAnswer:
+                                            question?['correct_answer'],
+                                        explain: question?['explain'],
+                                        rodyti: rodyti)));
                           }
                         },
                       ),
