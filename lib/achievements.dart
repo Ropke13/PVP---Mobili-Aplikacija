@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:matematika/main.dart';
 import 'package:matematika/utilities.dart';
 
-var achievementTitles = ['Pasiekimai?', 'Proto bokštas'];
+var achievementTitles = ['Pasiekimai?', 'Keliautojas', 'Tyrinėtojas', 'Proto bokštas'];
 var achievementDescriptions = [
   'Pasiekimai!',
+  'Aplankytos 3 temos',
+  'Aplankytos visos temos',
   'Teisingai atsakyta į 10 klausimų'
 ];
-var achieved = [(){return true;}, (){return getAchieved();}];
+var achieved = [(){return true;}, (){return visitedThemeCount() >= 3;}, (){return visitedThemeCount() >= 6;}, (){return getCorrectTotal() >= 10;}];
 
 class Achievements extends StatelessWidget {
   const Achievements({Key? key}) : super(key: key);
