@@ -233,7 +233,7 @@ class TestCorrect extends StatelessWidget {
                                       )),
                                   TeXViewDocument(answer,
                                       style: TeXViewStyle(
-                                        contentColor: Colors.white,
+                                        contentColor: Colors.yellow,
                                         fontStyle:
                                             TeXViewFontStyle(fontSize: 20),
                                         textAlign: TeXViewTextAlign.center,

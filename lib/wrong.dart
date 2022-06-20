@@ -237,7 +237,7 @@ class TestWrong extends StatelessWidget {
                                       )),
                                   TeXViewDocument(wrongAnswer,
                                       style: TeXViewStyle(
-                                        contentColor: Colors.white,
+                                        contentColor: Colors.yellow,
                                         fontStyle:
                                             TeXViewFontStyle(fontSize: 20),
                                         textAlign: TeXViewTextAlign.center,
